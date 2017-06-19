@@ -69,7 +69,7 @@ public class EIntroActivity extends Activity {
     }
 
     public void ENJoinProtector(View view){
-        Intent intent = new Intent(getApplicationContext(), EJoinProtectorActivity.class);
+        Intent intent = new Intent(getApplicationContext(), EChatActivity.class);
         startActivity(intent);
     }
 }
