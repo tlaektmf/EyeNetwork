@@ -25,6 +25,7 @@ public class EJoinUserActivity extends Activity {
         sv.addView(v1);
         sv.addView(v2);
         setContentView(sv);
+
         tts=new TextToSpeech(getApplicationContext(),
                 new TextToSpeech.OnInitListener(){
                     @Override
@@ -32,6 +33,7 @@ public class EJoinUserActivity extends Activity {
                         tts.setLanguage(Locale.KOREAN);
                     }
                 });
+
             String text="로그인 창입니다.";
             ttsActive=true;
             tts.speak(text,TextToSpeech.QUEUE_FLUSH,null);

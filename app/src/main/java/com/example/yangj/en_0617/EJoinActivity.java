@@ -67,8 +67,14 @@ public class EJoinActivity extends AppCompatActivity {
                 String stEmail=etEmail1.getText().toString();
                 String stPassword=etPassword1.getText().toString();
                // Toast.makeText(EJoinActivity.this,stEmail+","+stPassword,Toast.LENGTH_SHORT).show();//잘들어옴
+                if(stEmail.isEmpty()||stEmail.equals("")||stPassword.isEmpty()||stPassword.equals("")){
+                    Toast.makeText(EJoinActivity.this,"등록할 아이디를 입력해 주세요",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    registerUser(stEmail,stPassword);//회원가입 버튼 누를경우 실행됨
+                }
 
-                registerUser(stEmail,stPassword);//회원가입 버튼 누를경우 실행됨
+
             }
         });
 
