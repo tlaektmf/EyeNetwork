@@ -29,7 +29,6 @@ public class EIntroActivity extends Activity {
 
                 //자 이제 인텐트를 넘겨줘야됨
 
-
                 Intent in=new Intent(EIntroActivity.this,ELoginActivity.class);
 
                 startActivity(in);
