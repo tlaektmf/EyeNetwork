@@ -66,7 +66,7 @@ public class EStartActionActivity extends Activity{
             String text="두번 탭하셨습니다. 로그인 창으로 이동합니다.";
             tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
             Toast.makeText(getApplicationContext(), "두번 탭하셨습니다.",Toast.LENGTH_SHORT).show();
-            Intent intent=new Intent(getApplicationContext(),EJoinActivity.class);
+            Intent intent=new Intent(getApplicationContext(),EJoinUserActivity.class);
             startActivity(intent);
             return true;
         }
