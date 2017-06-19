@@ -1,5 +1,6 @@
 package com.example.yangj.en_0617;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -54,6 +55,7 @@ public class EChatActivity extends AppCompatActivity {
 
          database = FirebaseDatabase.getInstance();//instance를 받아야돼
         //데이터 송수신
+
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();//현재 user정보를 가지고 옴
         if (user != null) {
             // Name, email address, and profile photo Url
@@ -85,7 +87,11 @@ public class EChatActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
 
-        DatabaseReference myRef = database.getReference("dot array");//읽어올 트리 헤드 이름
+       //final String readMe=email;
+        DatabaseReference myRef = database.getReference(user.getUid());//읽어올 트리 헤드 이름(값이 미리 존재해야 읽을 수 있음)
+
+
+
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -124,6 +130,7 @@ public class EChatActivity extends AppCompatActivity {
             }
         });
 
+      //있으면 편리함
         Button btnFinish=(Button)findViewById(R.id.btn_finish);
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +141,23 @@ public class EChatActivity extends AppCompatActivity {
 
             }
         });
+
+        /*
+        점찍기 위한 버튼 이벤트
+         */
+        Button btnGoToMap=(Button)findViewById(R.id.btnGoToMap);
+        btnGoToMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //자 이제 인텐트를 넘겨줘야됨
+
+                Intent in=new Intent(EChatActivity.this,EPointOutActivity.class);
+
+                startActivity(in);
+            }
+        });
+
+
 
          /*
         보내기 버튼을 눌렀을 경우
@@ -162,15 +186,17 @@ public class EChatActivity extends AppCompatActivity {
                     SimpleDateFormat df=new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
                     String formattedDate=df.format((c.getTime()));
 
-                    DatabaseReference myRef = database.getReference(stText).child(formattedDate);//트리 헤드 이름
+                    DatabaseReference myRef = database.getReference(user.getUid()).child(formattedDate);//트리 헤드 이름
 
 
                     //해쉬테이블 이용합니당
                     Hashtable<String, String> dataDot
                             = new Hashtable<String, String>();
-                    dataDot.put("UserID", email);//key, value(내용)
+                    dataDot.put("UserID", email);//key, value(내용)//key값이름 바꾸려면 저기도 반드시 같이 수정해줘야됨
                     dataDot.put("sendedText", stText);
-                    dataDot.put("구분", "시각장애인");
+                    dataDot.put("구분", "보호자");//데이터베이스 저장소에는 보호자만 되어있음
+                                                    //사용자는 저장된 데이터만 읽어서 가져옴
+
 
             myRef.setValue(dataDot);
                     //Toast.makeText(EChatActivity.this,email+","+stText,Toast.LENGTH_SHORT).show();
