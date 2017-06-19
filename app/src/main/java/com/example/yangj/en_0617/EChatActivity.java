@@ -2,6 +2,7 @@ package com.example.yangj.en_0617;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -25,9 +26,11 @@ public class EChatActivity extends AppCompatActivity {
     Button sendButton;
     String userName;
     ArrayAdapter adapter;
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    String[] myDataset={"안녕","오늘","뭐했어","영화볼래"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +53,28 @@ public class EChatActivity extends AppCompatActivity {
                 //버튼을 누르면 이 아래에 있는 코드를 실행을 하시오
 
                 finish();
+<<<<<<< HEAD
+
+=======
                 //asdfsdfsdfsdssdfsd
+>>>>>>> 90264a1d7e2e7ec616b8247fbb4ede22b689db1b
             }
         });
+
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // specify an adapter (see also next example)
+        mAdapter = new MyAdapter(myDataset);
+        mRecyclerView.setAdapter(mAdapter);
 
     databaseReference.child("Location").addChildEventListener(new ChildEventListener() {
         @Override
@@ -80,13 +102,31 @@ public class EChatActivity extends AppCompatActivity {
         public void onCancelled(DatabaseError databaseError) {
 
         }
+
+
+
+
+
+
+
+
+
+
     });
 
-    }
+
+
+
+
+
+
+    }//oncreate
+
 
     public void EnChatClick(View view) {
         LocationData locationData=new LocationData(userName, editText.getText().toString());
         databaseReference.child("Location").push().setValue(locationData);
         editText.setText("");
     }
+
 }
