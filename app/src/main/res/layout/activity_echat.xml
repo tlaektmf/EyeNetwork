@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.yangj.en_0617.EChatActivity">
+    tools:context="com.example.yangj.en_0617.EChatActivity"
+    android:background="#F5EBE2">
 
     <RelativeLayout
         android:layout_width="0dp"
