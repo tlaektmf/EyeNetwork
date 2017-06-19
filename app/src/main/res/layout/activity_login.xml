@@ -48,5 +48,12 @@
                 android:hint="E-MAIL"
                 android:inputType="textEmailAddress" />
         </RelativeLayout>
+        <ProgressBar
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/pbLogin"
+            android:visibility="gone"
+            />
     </LinearLayout>
 </LinearLayout>

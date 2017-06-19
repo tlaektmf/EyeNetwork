@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,6 +35,7 @@ public class ELoginActivity extends AppCompatActivity {
     EditText etEmail2;
     EditText etPassword2;
 
+    ProgressBar pbLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class ELoginActivity extends AppCompatActivity {
         etEmail2=(EditText)findViewById(R.id.editText2);
         etPassword2=(EditText)findViewById(R.id.editText3);
 
+        pbLogin=(ProgressBar)findViewById(R.id.pbLogin);
 
         /*
         버튼을 눌렀을 경우 로그인 창->로그인 됐는지 확인
@@ -77,6 +80,8 @@ public class ELoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //버튼을 누르면 이 아래에 있는 코드를 실행을 하시오
                 //Toast.makeText(ELoginActivity.this,"Login잘됨",Toast.LENGTH_SHORT).show();//잘되는지 텍스트 아웃
+
+                pbLogin.setVisibility(View.VISIBLE);
 
                 String  stEmail2=etEmail2.getText().toString();
 
@@ -114,16 +119,17 @@ public class ELoginActivity extends AppCompatActivity {
 
     //메소드 추가
     public  void userLogin(String email, String password){
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
 
+
                     //자 이제 인텐트를 넘겨줘야됨//->로그인 success시 이동하도록 위치 변경
                         Toast.makeText(ELoginActivity.this,"Authentication success.",Toast.LENGTH_SHORT).show();
-                     Intent in=new Intent(ELoginActivity.this,EChatActivity.class);
-                     startActivity(in);
+
 
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
@@ -133,6 +139,15 @@ public class ELoginActivity extends AppCompatActivity {
                             Toast.makeText(ELoginActivity.this,"Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
 
+
+                        }
+
+                        else{
+
+                            //로그인이 성공 했다면 intent를 넘겨준다다
+                           Intent in=new Intent(ELoginActivity.this,EChatActivity.class);
+                            startActivity(in);
+                            pbLogin.setVisibility(View.GONE);
 
                         }
 
