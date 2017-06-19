@@ -30,9 +30,6 @@ import java.util.Random;
 
 //생성 test
 public class EChatActivity extends AppCompatActivity {
-
-
-
     ListView listView;
     EditText editText;
     Button sendButton;
@@ -47,6 +44,9 @@ public class EChatActivity extends AppCompatActivity {
     //String[] myDataset={"우리는","지금","전기프","열코딩중"};
     FirebaseDatabase database;
     @Override
+
+
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -162,7 +162,7 @@ public class EChatActivity extends AppCompatActivity {
                     SimpleDateFormat df=new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
                     String formattedDate=df.format((c.getTime()));
 
-                    DatabaseReference myRef = database.getReference("dot array").child(formattedDate);//트리 헤드 이름
+                    DatabaseReference myRef = database.getReference(email);//.child(formattedDate);//트리 헤드 이름
 
 
                     //해쉬테이블 이용합니당
