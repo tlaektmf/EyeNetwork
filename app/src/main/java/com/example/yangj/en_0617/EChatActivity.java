@@ -35,7 +35,7 @@ public class EChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_echat);
 
         listView=(ListView)findViewById(R.id.listView);
-        editText=(EditText)findViewById(R.id.editText);
+
         sendButton=(Button)findViewById(R.id.button5);
         userName="user"+new Random().nextInt(1000);
         adapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,android.R.id.text1);
