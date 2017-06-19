@@ -34,6 +34,8 @@ public class EChatActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_echat);
 
@@ -43,6 +45,7 @@ public class EChatActivity extends AppCompatActivity {
         userName="user"+new Random().nextInt(1000);
         adapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,android.R.id.text1);
         listView.setAdapter(adapter);
+
           /*
         버튼을 눌렀을 경우 로그인 창->채팅 엑티비티로 전환
          */
@@ -119,7 +122,8 @@ public class EChatActivity extends AppCompatActivity {
     }//oncreate
 
 
-    public void EnChatClick(View view) {
+    public void EnChatClick(View view) {//데이터 전송 버튼을 누를경우
+
         LocationData locationData=new LocationData(userName, editText.getText().toString());
         databaseReference.child("Location").push().setValue(locationData);
         editText.setText("");

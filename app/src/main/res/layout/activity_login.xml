@@ -47,13 +47,18 @@
                 android:ems="10"
                 android:hint="E-MAIL"
                 android:inputType="textEmailAddress" />
+
+            <ProgressBar
+                android:id="@+id/pbLogin"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="gone"
+
+                android:layout_alignTop="@+id/editText2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp" />
+
         </RelativeLayout>
-        <ProgressBar
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerInParent="true"
-            android:id="@+id/pbLogin"
-            android:visibility="gone"
-            />
+
     </LinearLayout>
 </LinearLayout>

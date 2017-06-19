@@ -33,30 +33,27 @@
         tools:layout_editor_absoluteX="67dp"
         tools:layout_editor_absoluteY="355dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/listView"
-        android:layout_marginBottom="35dp" />
+        android:layout_toStartOf="@+id/button5" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
         android:onClick="EnChatClick"
-        android:text="제출"
-        android:layout_alignBaseline="@+id/btn_finish"
-        android:layout_alignBottom="@+id/btn_finish"
-        android:layout_toEndOf="@+id/btn_finish" />
+        android:text="점 데이터 전송"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/listView"
-        android:layout_marginTop="21dp"
+
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:text="Name"
+        android:layout_above="@+id/btn_finish"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/simple_list_item_1"
@@ -70,6 +67,9 @@
         android:id="@+id/my_recycler_view"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/editText"
+        />
+
 
 </RelativeLayout>
