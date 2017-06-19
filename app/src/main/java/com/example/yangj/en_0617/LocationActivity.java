@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import net.daum.mf.map.api.MapCircle;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapReverseGeoCoder;
@@ -212,7 +213,6 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 
     }
 
-<<<<<<< HEAD
     private void addCircles() {
         for (int i=0; i<mMapPointList.size();i++){
             MapPoint point = (MapPoint) mMapPointList.get(i);
@@ -263,8 +263,7 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 //        mMapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
     }
 
-=======
->>>>>>> c9141fd8a04ff3fc93a57b0c741f1c588cffa752
+
     @Override
     public void onCurrentLocationDeviceHeadingUpdate(MapView mapView, float v) {
 
