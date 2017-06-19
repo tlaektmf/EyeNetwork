@@ -48,7 +48,6 @@
                 android:hint="E-MAIL"
                 android:inputType="textEmailAddress" />
 
-<<<<<<< HEAD
             <ProgressBar
                 android:id="@+id/pbLogin"
                 android:layout_width="50dp"
@@ -59,7 +58,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp" />
 
-=======
+
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
@@ -69,7 +68,7 @@
                 android:layout_marginBottom="87dp"
                 android:text="로그인 창입니다."
                 android:layout_alignEnd="@+id/editText2" />
->>>>>>> 315e621d76c6e1a5576173f54467bda169b7f6fb
+
         </RelativeLayout>
 
     </LinearLayout>
