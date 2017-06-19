@@ -19,31 +19,42 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Comment;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Hashtable;
+import java.util.List;
 import java.util.Random;
 
+//생성 test
 public class EChatActivity extends AppCompatActivity {
-   // private FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();//
-  //  private DatabaseReference databaseReference=firebaseDatabase.getReference();//
+
+
+
     ListView listView;
     EditText editText;
     Button sendButton;
     String userName;
     ArrayAdapter adapter;
     String email;
+    List<EdataReadWrite> mComments;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    String[] myDataset={"우리는","지금","전기프","열코딩중"};
-
+    //String[] myDataset={"우리는","지금","전기프","열코딩중"};
+    FirebaseDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_echat);
 
+         database = FirebaseDatabase.getInstance();//instance를 받아야돼
         //데이터 송수신
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();//현재 user정보를 가지고 옴
         if (user != null) {
             // Name, email address, and profile photo Url
 
@@ -69,9 +80,49 @@ public class EChatActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(myDataset);
+        mComments=new ArrayList<>();
+        mAdapter = new MyAdapter(mComments);
         mRecyclerView.setAdapter(mAdapter);
 
+
+        DatabaseReference myRef = database.getReference("dot array");//트리 헤드 이름
+        myRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+
+                EdataReadWrite comment = dataSnapshot.getValue(EdataReadWrite.class);
+
+
+                                     // [START_EXCLUDE]
+                                     // Update RecyclerView
+                                     //mCommentIds.add(dataSnapshot.getKey());
+                                     mComments.add(comment);//list를 만들어줌
+                                     mAdapter.notifyItemInserted(mComments.size() - 1);//아이템이 들어가면 반영한다
+                                  // [END_EXCLUDE]
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         Button btnFinish=(Button)findViewById(R.id.btn_finish);
         btnFinish.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +143,7 @@ public class EChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(EChatActivity.this,"제발 되어라",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(EChatActivity.this,"제발 되어라",Toast.LENGTH_SHORT).show();
 
                 String stText=editText.getText().toString();
                 if(stText.equals("")||stText.isEmpty()){
@@ -101,10 +152,28 @@ public class EChatActivity extends AppCompatActivity {
                 else{
                     //데이터가 입력되었을 때, 데이터베이스에 전송
 
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("dot array");//트리에서 어느부분에 저장함?
-            myRef.setValue(stText);
-                    Toast.makeText(EChatActivity.this,email+","+stText,Toast.LENGTH_SHORT).show();
+           // FirebaseDatabase database = FirebaseDatabase.getInstance();//instance를 받아야돼
+
+           // DatabaseReference myRef = database.getReference("dot array");//트리 헤드 이름
+
+                    //헤드의 child를 데이터를 수신한 시간으로 설정함
+                    //head dotarray에 날짜별로 데이터가 올라가짐
+                    Calendar c =Calendar.getInstance();
+                    SimpleDateFormat df=new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+                    String formattedDate=df.format((c.getTime()));
+
+                    DatabaseReference myRef = database.getReference("dot array").child(formattedDate);//트리 헤드 이름
+
+
+                    //해쉬테이블 이용합니당
+                    Hashtable<String, String> dataDot
+                            = new Hashtable<String, String>();
+                    dataDot.put("UserID", email);//key, value(내용)
+                    dataDot.put("sendedText", stText);
+                    dataDot.put("구분", "시각장애인");
+
+            myRef.setValue(dataDot);
+                    //Toast.makeText(EChatActivity.this,email+","+stText,Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -115,6 +184,8 @@ public class EChatActivity extends AppCompatActivity {
 
 
     }//oncreate의끝
+
+
 
 
 
