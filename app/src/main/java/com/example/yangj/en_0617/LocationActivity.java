@@ -40,6 +40,7 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
     private CoffeeIntentReceiver mIntentReceiver;
 
     ArrayList mPendingIntentList;
+    private ArrayList mMapPointList;
 
     String intentKey = "coffeeProximity";
 
