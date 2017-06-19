@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PointF;
+import android.speech.tts.TextToSpeech;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -141,6 +142,7 @@ public class SlidingView extends ViewGroup{
         setPage(getChildCount() - 1);
     }
 
+    public int page;
 
     boolean isFirstMove=true;
     //ACTION_MOVE의 제일 처음 이벤트만 동작하도록 하는 멤버변수
@@ -207,8 +209,10 @@ public class SlidingView extends ViewGroup{
 
                 if (mToast != null) {
                     mToast.setText("page : " + nextPage);
+                    page=nextPage;
                 } else {
                     mToast = Toast.makeText(getContext(), "page : " + nextPage, Toast.LENGTH_SHORT);
+                    page=nextPage;
                 }
                 mToast.show();
                 invalidate();
@@ -235,6 +239,7 @@ public class SlidingView extends ViewGroup{
             // 목표 스크롤 지점에 도착할떄까지 computeScroll() 메서드가 호출되고 스크롤 되고 호출되고 반복.
             // 따라서 화면에 스크롤 애니메이션을 구현된것처럼 보이게 됨.
             scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
+
             invalidate();
         }
     }

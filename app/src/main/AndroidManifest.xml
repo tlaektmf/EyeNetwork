@@ -26,6 +26,7 @@
         <activity android:name=".EChatActivity" />
         <activity android:name=".EJoinActivity" />
         <activity android:name=".LocationActivity" />
+        <activity android:name=".EStartActionActivity"/>
         <activity android:name=".MapViewActivity"></activity>
     </application>
 

@@ -24,7 +24,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ELoginActivity extends AppCompatActivity {
 
-
     //추가
     String TAG="ELoginActivity";
     //추가
