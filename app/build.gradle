@@ -37,9 +37,9 @@ dependencies {
 
 
 
-    compile 'com.google.firebase:firebase-auth:9.8.0'
-    compile 'com.google.firebase:firebase-database:9.8.0'
-    compile 'com.android.support:recyclerview-v7:25.0.1'
+    compile 'com.google.firebase:firebase-auth:9.8.0'//버전 맞춰야돼
+    compile 'com.google.firebase:firebase-database:9.8.0'//데이터베이스를 위한 싱크
+    compile 'com.android.support:recyclerview-v7:25.0.1'//리사이클 뷰를 위한 싱크
 
 
 
