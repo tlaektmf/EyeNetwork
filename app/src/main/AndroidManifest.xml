@@ -29,6 +29,7 @@
         <activity android:name=".EJoinActivity" />
         <activity android:name=".LocationActivity" />
         <activity android:name=".EStartActionActivity"/>
+        <activity android:name=".EProtectorStartActivity"/>
         <activity android:name=".MapViewActivity"></activity>
     </application>
 
