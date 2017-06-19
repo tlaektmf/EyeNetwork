@@ -15,15 +15,15 @@
 
     </RelativeLayout>
 
-    <!--<ListView-->
-        <!--android:layout_width="407dp"-->
-        <!--android:layout_height="299dp"-->
-        <!--tools:layout_editor_absoluteX="-9dp"-->
-        <!--tools:layout_editor_absoluteY="28dp"-->
-        <!--android:id="@+id/listView"-->
-        <!--android:layout_below="@+id/relativeLayout"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginTop="11dp" />-->
+    <ListView
+        android:layout_width="407dp"
+        android:layout_height="299dp"
+        tools:layout_editor_absoluteX="-9dp"
+        tools:layout_editor_absoluteY="28dp"
+        android:id="@+id/listView"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp" />
 
     <Button
         android:id="@+id/btn_finish"
@@ -47,24 +47,24 @@
         android:layout_alignBottom="@+id/btn_finish"
         android:layout_toEndOf="@+id/btn_finish" />
 
-    <!--<EditText-->
-        <!--android:id="@+id/editText"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_below="@+id/listView"-->
-        <!--android:layout_marginTop="21dp"-->
-        <!--android:ems="10"-->
-        <!--android:inputType="textPersonName"-->
-        <!--android:text="Name" />-->
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/listView"
+        android:layout_marginTop="21dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
 
-    <!--<TextView-->
-        <!--android:id="@+id/simple_list_item_1"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/editText"-->
-        <!--android:layout_toEndOf="@+id/relativeLayout"-->
-        <!--android:text="TextView" />-->
+    <TextView
+        android:id="@+id/simple_list_item_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText"
+        android:layout_toEndOf="@+id/relativeLayout"
+        android:text="TextView" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view"
