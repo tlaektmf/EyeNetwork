@@ -30,6 +30,7 @@
         <activity android:name=".EProtectorStartActivity"/>
         <activity android:name=".EJoinUserActivity"/>
         <activity android:name=".EJoinProtectorActivity"/>
+        <activity android:name=".EUserActivity"/>
         <activity android:name=".MapViewActivity"></activity>
     </application>
 

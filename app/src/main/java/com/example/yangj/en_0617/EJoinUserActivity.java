@@ -21,24 +21,56 @@ public class EJoinUserActivity extends AppCompatActivity{
     ViewPager vp;
     TextToSpeech tts;
     boolean ttsActive=false;
+    int mCurrentPosition;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userview);
-
         vp=(ViewPager)findViewById(R.id.vp);
         vp.setAdapter(new pagerAdapter(getSupportFragmentManager()));
         vp.setCurrentItem(1);
+        vp.setOnPageChangeListener((new ViewPager.OnPageChangeListener(){
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mCurrentPosition=position;
+                switch (position){
+                    case 0:
+                        Toast.makeText(getApplicationContext(), "회원가입창", Toast.LENGTH_SHORT).show();
+                        String text="회원가입창입니다. 이메일과 비밀번호를 입력해주십시오.";
+                        tts.speak(text,TextToSpeech.QUEUE_FLUSH,null);
+                        break;
+                    case 1:
+                        Toast.makeText(getApplicationContext(), "로그인창", Toast.LENGTH_SHORT).show();
+                        String text2="로그인창입니다. 이메일과 비밀번호를 입력해주십시오.";
+                        tts.speak(text2,TextToSpeech.QUEUE_FLUSH,null);
+
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        }));
+
 
         tts=new TextToSpeech(getApplicationContext(),new TextToSpeech.OnInitListener(){
             @Override
             public void onInit(int status) {
                 if(status!=TextToSpeech.ERROR){
                     tts.setLanguage(Locale.KOREAN);
+
                 }
             }
         });
+
     }
 
     private class pagerAdapter extends FragmentStatePagerAdapter
@@ -53,14 +85,8 @@ public class EJoinUserActivity extends AppCompatActivity{
             switch(position)
             {
                 case 0:
-                    String text="회원가입창입니다.";
-                    tts.speak(text,TextToSpeech.QUEUE_FLUSH,null);
-                    Toast.makeText(getApplicationContext(), "회원가입창", Toast.LENGTH_SHORT).show();
                     return new FirstFragement();
                 case 1:
-                    String text2="로그인창입니다.";
-                    tts.speak(text2,TextToSpeech.QUEUE_FLUSH,null);
-                    Toast.makeText(getApplicationContext(), "로그인창", Toast.LENGTH_SHORT).show();
                     return new SecondFragement();
                 default:
                     return null;
@@ -71,5 +97,8 @@ public class EJoinUserActivity extends AppCompatActivity{
         {
             return 2;
         }
+
+
     }
+
 }
