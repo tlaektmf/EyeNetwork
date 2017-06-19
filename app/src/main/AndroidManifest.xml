@@ -26,18 +26,15 @@
         <activity android:name=".EChatActivity" />
         <activity android:name=".EJoinActivity" />
         <activity android:name=".LocationActivity" />
-<<<<<<< HEAD
         <activity android:name=".EStartActionActivity" />
         <activity android:name=".EProtectorStartActivity" />
         <activity android:name=".MapViewActivity" />
-=======
         <activity android:name=".EStartActionActivity"/>
         <activity android:name=".EProtectorStartActivity"/>
         <activity android:name=".EJoinUserActivity"/>
         <activity android:name=".EJoinProtectorActivity"/>
         <activity android:name=".EUserActivity"/>
         <activity android:name=".MapViewActivity"></activity>
->>>>>>> b378f8fe2ba8cc0bab0bfa0b2a82c3fd431f91f1
     </application>
 
 </manifest>
