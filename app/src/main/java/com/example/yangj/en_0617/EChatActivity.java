@@ -45,7 +45,7 @@ public class EChatActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //버튼을 누르면 이 아래에 있는 코드를 실행을 하시오
 
-                //finish();
+                finish();
                 //asdfsdfsdfsdssdfsd
             }
         });
