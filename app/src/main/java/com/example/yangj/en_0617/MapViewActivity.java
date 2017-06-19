@@ -2,6 +2,7 @@ package com.example.yangj.en_0617;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,8 +11,12 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 
 import net.daum.mf.map.api.MapLayout;
+import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
+import net.daum.mf.map.api.MapPolyline;
 import net.daum.mf.map.api.MapView;
+
+import java.util.ArrayList;
 
 public class MapViewActivity extends AppCompatActivity
         implements MapView.OpenAPIKeyAuthenticationResultListener, MapView.MapViewEventListener {
@@ -22,6 +27,8 @@ public class MapViewActivity extends AppCompatActivity
     private static final String LOG_TAG = "MapViewActivity";
 
     private MapView mMapView;
+    private ArrayList mMapPointList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,9 @@ public class MapViewActivity extends AppCompatActivity
 
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
         mapViewContainer.addView(mapLayout);
+
+        /* MapPoint 저장 배열 */
+        mMapPointList = new ArrayList();
     }
 
     @Override
@@ -219,12 +229,40 @@ public class MapViewActivity extends AppCompatActivity
     @Override
     public void onMapViewLongPressed(MapView mapView, MapPoint mapPoint) {
 
-        MapPoint.GeoCoordinate mapPointGeo = mapPoint.getMapPointGeoCoord();
+        final MapPoint.GeoCoordinate mapPointGeo = mapPoint.getMapPointGeoCoord();
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setTitle("DaumMapLibrarySample");
-        alertDialog.setMessage(String.format("Long-Press on (%f,%f)", mapPointGeo.latitude, mapPointGeo.longitude));
-        alertDialog.setPositiveButton("OK", null);
+        alertDialog.setTitle("좌표 추가");
+        alertDialog.setMessage(String.format("Long-Press on (%f,%f) 추가하시겠습니까?", mapPointGeo.latitude, mapPointGeo.longitude));
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                MapPolyline existingPolyline = mMapView.findPolylineByTag(2000);
+                if (existingPolyline != null) {
+                    mMapView.removePolyline(existingPolyline);
+                }
+
+                mMapPointList.add(MapPoint.mapPointWithGeoCoord(mapPointGeo.latitude, mapPointGeo.longitude));
+                MapPOIItem poiItemPick = new MapPOIItem();
+                poiItemPick.setItemName("Pick");
+                poiItemPick.setTag(10001);
+                poiItemPick.setMapPoint(MapPoint.mapPointWithGeoCoord(mapPointGeo.latitude, mapPointGeo.longitude));
+                poiItemPick.setMarkerType(MapPOIItem.MarkerType.CustomImage);
+                poiItemPick.setShowAnimationType(MapPOIItem.ShowAnimationType.SpringFromGround);
+                poiItemPick.setShowCalloutBalloonOnTouch(false);
+                poiItemPick.setCustomImageResourceId(R.drawable.location_map_pin_pink);
+                mMapView.addPOIItem(poiItemPick);
+
+                MapPolyline polyline = new MapPolyline(mMapPointList.size());
+                polyline.setTag(2000);
+                polyline.setLineColor(Color.argb(128, 255, 93, 117));
+                for (int i=0;i<mMapPointList.size();i++){
+                    polyline.addPoint((MapPoint) mMapPointList.get(i));
+                }
+                mMapView.addPolyline(polyline);
+            }
+        });
+        alertDialog.setNegativeButton("CANCLE", null);
         alertDialog.show();
     }
 
