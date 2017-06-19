@@ -23,8 +23,8 @@
                 android:layout_marginEnd="55dp"
                 android:layout_toStartOf="@+id/button9"
                 android:layout_weight="1"
-                android:onClick="ENjoinProtectorClick"
-                android:text="회원가입" />
+                android:onClick="EUserStartCheck"
+                android:text="시작" />
 
             <Button
                 android:id="@+id/button9"
@@ -35,8 +35,8 @@
                 android:layout_marginEnd="78dp"
                 android:layout_marginTop="204dp"
                 android:layout_weight="1"
-                android:onClick="ENLoginProtectorClick"
-                android:text="로그인" />
+                android:onClick="EUserDeleteCheck"
+                android:text="중단" />
         </RelativeLayout>
 
     </LinearLayout>

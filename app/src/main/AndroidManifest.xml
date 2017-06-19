@@ -22,17 +22,27 @@
             </intent-filter>
         </activity>
         <activity android:name=".EIntroActivity" />
-        <activity android:name=".EJoinProtectorActivity" />
-        <activity android:name=".EJoinUserActivity" />
         <activity android:name=".ELoginActivity" />
         <activity android:name=".EChatActivity" />
         <activity android:name=".EJoinActivity" />
         <activity android:name=".LocationActivity" />
+
         <activity android:name=".EStartActionActivity" />
         <activity android:name=".EProtectorStartActivity" />
         <activity android:name=".MapViewActivity" />
         <activity android:name=".EPointOutLocation" />
         <activity android:name=".EPointOutActivity"></activity>
+
+        <activity android:name=".EStartActionActivity" />
+        <activity android:name=".EProtectorStartActivity" />
+        <activity android:name=".MapViewActivity" />
+
+        <activity android:name=".EStartActionActivity"/>
+        <activity android:name=".EProtectorStartActivity"/>
+        <activity android:name=".EJoinUserActivity"/>
+        <activity android:name=".EUserActivity"/>
+        <activity android:name=".MapViewActivity"></activity>
+
     </application>
 
 </manifest>
