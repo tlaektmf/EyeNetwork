@@ -13,8 +13,7 @@ import java.util.Locale;
  */
 
 public class EJoinUserActivity extends Activity {
-    TextToSpeech tts;
-    boolean ttsActive=false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +24,5 @@ public class EJoinUserActivity extends Activity {
         sv.addView(v2);
         setContentView(sv);
 
-        tts=new TextToSpeech(getApplicationContext(),
-                new TextToSpeech.OnInitListener){
-
-        })
     }
 }
