@@ -85,7 +85,7 @@ public class EChatActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
 
-        DatabaseReference myRef = database.getReference("dot array");//트리 헤드 이름
+        DatabaseReference myRef = database.getReference("dot array");//읽어올 트리 헤드 이름
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -162,7 +162,7 @@ public class EChatActivity extends AppCompatActivity {
                     SimpleDateFormat df=new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
                     String formattedDate=df.format((c.getTime()));
 
-                    DatabaseReference myRef = database.getReference(email);//.child(formattedDate);//트리 헤드 이름
+                    DatabaseReference myRef = database.getReference(stText).child(formattedDate);//트리 헤드 이름
 
 
                     //해쉬테이블 이용합니당
