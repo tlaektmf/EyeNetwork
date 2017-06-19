@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.yangj.en_0617.EChatActivity">
+    tools:context="com.example.yangj.en_0617.EChatActivity"
+    android:background="#F5EBE2">
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -43,6 +44,14 @@
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/editText" />
 
+    <Button
+        android:id="@+id/btnGoToMap"
+        android:text="누르면 이제 사용자 위치를 실시간으로 찍어"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/my_recycler_view"
+        android:layout_toEndOf="@+id/relativeLayout"
+        />
     <EditText
         android:id="@+id/editText"
         android:layout_width="wrap_content"

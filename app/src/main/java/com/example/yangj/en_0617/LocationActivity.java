@@ -7,18 +7,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import net.daum.mf.map.api.MapCircle;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapReverseGeoCoder;
@@ -43,12 +40,11 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
     private CoffeeIntentReceiver mIntentReceiver;
 
     ArrayList mPendingIntentList;
-    private ArrayList mMapPointList;
 
     String intentKey = "coffeeProximity";
 
-    double get_latitude = 0;
-    double get_longitude = 0;
+    double get_latitude=0;
+    double get_longitude=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +56,13 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
         mMapView.setCurrentLocationEventListener(this);
 
         /* ProximityAlert */
-        Log.d("slog", "onCreate()");
+        Log.d("slog","onCreate()");
 
         // 위치 관리자 객체 참조
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         mPendingIntentList = new ArrayList();
 
+<<<<<<< HEAD
         /* MapPoint 저장 배열 */
         mMapPointList = new ArrayList();
 
@@ -82,13 +79,15 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
             MapPoint temp = (MapPoint) mMapPointList.get(i);
             register(i, temp.getMapPointGeoCoord().latitude, temp.getMapPointGeoCoord().longitude, 10, -1);
         }
+=======
+        int countTargets = 2;
+        register(1001, 37.643879, 127.065918,30, -1);//목표지점(가상으로 찍어줌)
+>>>>>>> c9141fd8a04ff3fc93a57b0c741f1c588cffa752
 
         mIntentReceiver = new CoffeeIntentReceiver(intentKey);
         registerReceiver(mIntentReceiver, mIntentReceiver.getFilter());
 
-        Toast.makeText(getApplicationContext(), mMapPointList.size() + "개 지점에 대한 근접 리스너 등록", Toast.LENGTH_LONG).show();
-
-        addCircles();
+        Toast.makeText(getApplicationContext(), countTargets + "개 지점에 대한 근접 리스너 등록", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -214,6 +213,7 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 
     }
 
+<<<<<<< HEAD
     private void addCircles() {
         for (int i=0; i<mMapPointList.size();i++){
             MapPoint point = (MapPoint) mMapPointList.get(i);
@@ -264,6 +264,8 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 //        mMapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
     }
 
+=======
+>>>>>>> c9141fd8a04ff3fc93a57b0c741f1c588cffa752
     @Override
     public void onCurrentLocationDeviceHeadingUpdate(MapView mapView, float v) {
 
@@ -302,17 +304,6 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
         proximityIntent.putExtra("latitude", latitude);
         proximityIntent.putExtra("longitude", longitude);
         PendingIntent intent = PendingIntent.getBroadcast(this, id, proximityIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
 
         mLocationManager.addProximityAlert(latitude, longitude, radius, expiration, intent);
         //parameter값들을 이용해서 넘김(등록)

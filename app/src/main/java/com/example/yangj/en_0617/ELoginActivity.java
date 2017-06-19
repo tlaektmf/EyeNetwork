@@ -18,6 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import net.daum.android.map.MapActivity;
+
 /**
  * Created by yangj on 2017-06-17.
  */
@@ -144,7 +146,7 @@ public class ELoginActivity extends AppCompatActivity {
                         else{
 
                             //로그인이 성공 했다면 intent를 넘겨준다다
-                           Intent in=new Intent(ELoginActivity.this,EChatActivity.class);
+                           Intent in=new Intent(ELoginActivity.this,MapActivity.class/*EChatActivity.class*/);
                             startActivity(in);
                             pbLogin.setVisibility(View.GONE);
 
