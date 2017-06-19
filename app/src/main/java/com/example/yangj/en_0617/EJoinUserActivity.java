@@ -13,6 +13,8 @@ import java.util.Locale;
  */
 
 public class EJoinUserActivity extends Activity {
+    TextToSpeech tts;
+    boolean ttsActive=false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,6 +25,23 @@ public class EJoinUserActivity extends Activity {
         sv.addView(v1);
         sv.addView(v2);
         setContentView(sv);
+        tts=new TextToSpeech(getApplicationContext(),
+                new TextToSpeech.OnInitListener(){
+                    @Override
+                    public void onInit(int status) {
+                        tts.setLanguage(Locale.KOREAN);
+                    }
+                });
+        if(v1.getVisibility()==View.VISIBLE){
+            String text="로그인 창입니다.";
+            ttsActive=true;
+            tts.speak(text,TextToSpeech.QUEUE_FLUSH,null);
 
+
+        }else{
+            String text="회원가입 창입니다.";
+            ttsActive=true;
+            tts.speak(text,TextToSpeech.QUEUE_FLUSH,null);
+        }
     }
 }
