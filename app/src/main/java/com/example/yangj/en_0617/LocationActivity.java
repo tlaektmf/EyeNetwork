@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import net.daum.mf.map.api.MapCircle;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapReverseGeoCoder;
@@ -40,6 +41,7 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
     private CoffeeIntentReceiver mIntentReceiver;
 
     ArrayList mPendingIntentList;
+    private ArrayList mMapPointList;
 
     String intentKey = "coffeeProximity";
 
@@ -62,13 +64,24 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         mPendingIntentList = new ArrayList();
 
-        int countTargets = 2;
-        register(1001, 37.643879, 127.065918, 30, -1);//목표지점(가상으로 찍어줌)
+        /* MapPoint 저장 배열 */
+        mMapPointList = new ArrayList();
+
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.543682, 127.077555));
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.543736, 127.076801));
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.544591, 127.076785));
+
+        for(int i=0;i<mMapPointList.size();i++){
+            MapPoint temp = (MapPoint) mMapPointList.get(i);
+            register(i, temp.getMapPointGeoCoord().latitude, temp.getMapPointGeoCoord().longitude, 10, -1);
+        }
 
         mIntentReceiver = new CoffeeIntentReceiver(intentKey);
         registerReceiver(mIntentReceiver, mIntentReceiver.getFilter());
 
-        Toast.makeText(getApplicationContext(), countTargets + "개 지점에 대한 근접 리스너 등록", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), mMapPointList.size() + "개 지점에 대한 근접 리스너 등록", Toast.LENGTH_LONG).show();
+
+        addCircles();
     }
 
     @Override
@@ -192,6 +205,47 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 
         return onOptionsItemSelected(item);
 
+    }
+
+    private void addCircles() {
+        MapCircle circle1 = new MapCircle(
+                MapPoint.mapPointWithGeoCoord(37.543682, 127.077555), // center
+                10, // radius
+                Color.argb(128, 255, 0, 0), // strokeColor
+                Color.argb(128, 0, 255, 0) // fillColor
+        );
+        circle1.setTag(1111);
+        mMapView.addCircle(circle1);
+        MapCircle circle2 = new MapCircle(
+                MapPoint.mapPointWithGeoCoord(37.543736, 127.076801), // center
+                10, // radius
+                Color.argb(128, 255, 0, 0), // strokeColor
+                Color.argb(128, 0, 255, 0) // fillColor
+        );
+        circle1.setTag(2222);
+        mMapView.addCircle(circle2);
+        MapCircle circle3 = new MapCircle(
+                MapPoint.mapPointWithGeoCoord(37.544591, 127.076785), // center
+                10, // radius
+                Color.argb(128, 255, 0, 0), // strokeColor
+                Color.argb(128, 0, 255, 0) // fillColor
+        );
+        circle1.setTag(3333);
+        mMapView.addCircle(circle3);
+//        MapCircle circle2 = new MapCircle(
+//                MapPoint.mapPointWithGeoCoord(37.551094, 127.019470), // center
+//                1000, // radius
+//                Color.argb(128, 255, 0, 0), // strokeColor
+//                Color.argb(128, 255, 255, 0) // fillColor
+//        );
+//        circle2.setTag(5678);
+//        mMapView.addCircle(circle2);
+
+//        // 지도뷰의 중심좌표와 줌레벨을 Circle이 모두 나오도록 조정.
+//        MapPointBounds[] mapPointBoundsArray = { circle1.getBound(), circle2.getBound() };
+//        MapPointBounds mapPointBounds = new MapPointBounds(mapPointBoundsArray);
+//        int padding = 50; // px
+//        mMapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
     }
 
     @Override
