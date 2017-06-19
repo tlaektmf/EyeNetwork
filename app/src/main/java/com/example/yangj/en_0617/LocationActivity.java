@@ -62,7 +62,6 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         mPendingIntentList = new ArrayList();
 
-<<<<<<< HEAD
         /* MapPoint 저장 배열 */
         mMapPointList = new ArrayList();
 
@@ -79,10 +78,9 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
             MapPoint temp = (MapPoint) mMapPointList.get(i);
             register(i, temp.getMapPointGeoCoord().latitude, temp.getMapPointGeoCoord().longitude, 10, -1);
         }
-=======
         int countTargets = 2;
         register(1001, 37.643879, 127.065918,30, -1);//목표지점(가상으로 찍어줌)
->>>>>>> c9141fd8a04ff3fc93a57b0c741f1c588cffa752
+
 
         mIntentReceiver = new CoffeeIntentReceiver(intentKey);
         registerReceiver(mIntentReceiver, mIntentReceiver.getFilter());
