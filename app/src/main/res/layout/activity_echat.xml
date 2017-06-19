@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.yangj.en_0617.EChatActivity">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"
+        android:id="@+id/relativeLayout">
+
+    </RelativeLayout>
+
+    <ListView
+        android:layout_width="407dp"
+        android:layout_height="299dp"
+        tools:layout_editor_absoluteX="-9dp"
+        tools:layout_editor_absoluteY="28dp"
+        android:id="@+id/listView"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp" />
+
+    <Button
+        android:id="@+id/btn_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FINISH"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="355dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/listView"
+        android:layout_marginBottom="35dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:onClick="EnChatClick"
+        android:text="제출"
+        android:layout_alignBaseline="@+id/btn_finish"
+        android:layout_alignBottom="@+id/btn_finish"
+        android:layout_toEndOf="@+id/btn_finish" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/listView"
+        android:layout_marginTop="21dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/simple_list_item_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText"
+        android:layout_toEndOf="@+id/relativeLayout"
+        android:text="TextView" />
+
+</RelativeLayout>
