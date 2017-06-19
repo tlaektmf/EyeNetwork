@@ -28,7 +28,7 @@ public class EIntroActivity extends Activity {
                 //Toast.makeText(EIntroActivity.this,"잘들어가짐",Toast.LENGTH_SHORT).show();//잘되는지 텍스트 아웃
 
                 //자 이제 인텐트를 넘겨줘야됨
-                Intent in=new Intent(EIntroActivity.this,/*ELoginActivity.class*/ LocationActivity.class);
+                Intent in=new Intent(EIntroActivity.this, LocationActivity.class);
                 startActivity(in);
 
             }
