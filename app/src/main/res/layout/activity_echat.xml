@@ -33,25 +33,22 @@
         tools:layout_editor_absoluteX="67dp"
         tools:layout_editor_absoluteY="355dp"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/button5" />
+        android:layout_toEndOf="@+id/send" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="EnChatClick"
         android:text="점 데이터 전송"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_toStartOf="@+id/editText" />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         android:layout_above="@+id/btn_finish"
         android:layout_alignParentEnd="true" />
 
