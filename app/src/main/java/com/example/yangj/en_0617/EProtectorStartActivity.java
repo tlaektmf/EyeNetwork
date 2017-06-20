@@ -17,12 +17,12 @@ public class EProtectorStartActivity extends Activity {
         setContentView(R.layout.activity_protector);
     }
 
-    public void ENLoginProtectorClick(View view) {
+    public void ENjoinProtectorClick(View view) {
         Intent intent = new Intent(getApplicationContext(), ELoginActivity.class);
         startActivity(intent);
     }
 
-    public void ENjoinProtectorClick(View view) {
+    public void ENLoginProtectorClick(View view) {
         Intent intent = new Intent(getApplicationContext(),  EJoinActivity.class);
         startActivity(intent);
     }

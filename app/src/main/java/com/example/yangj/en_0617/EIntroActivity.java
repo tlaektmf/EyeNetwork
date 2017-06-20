@@ -36,7 +36,6 @@ public class EIntroActivity extends Activity {
             }
         });
 
-
           /*
         ID: btnJoin
         을 누르면

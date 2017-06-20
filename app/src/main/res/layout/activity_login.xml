@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5EBE2">
@@ -15,14 +16,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/btnLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/editText3"
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="#00ff0000"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/eyes_"
+                android:layout_above="@+id/editText2"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="28dp"
-                android:text="LOGIN" />
+                android:layout_marginBottom="14dp" />
+
+            <ImageButton
+                android:id="@+id/btnLogin"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/padlock"
+                android:scaleType="centerInside"
+                android:background="#00ff0000"
+                android:layout_marginTop="42dp"
+                android:layout_below="@+id/editText3"
+                android:layout_centerHorizontal="true" />
 
             <EditText
                 android:id="@+id/editText3"
@@ -59,4 +73,5 @@
         </RelativeLayout>
 
     </LinearLayout>
+
 </RelativeLayout>
