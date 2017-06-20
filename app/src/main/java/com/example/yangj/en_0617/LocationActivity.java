@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,6 +26,7 @@ import net.daum.mf.map.api.MapReverseGeoCoder;
 import net.daum.mf.map.api.MapView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static java.lang.Math.sqrt;
 
@@ -50,8 +52,12 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
     double get_latitude = 0;
     double get_longitude = 0;
 
+<<<<<<< HEAD
     double now_latitude;
     double now_longitude;
+=======
+    TextToSpeech tts;
+>>>>>>> 3dc5d28fc8b3d820418655f016395a6b05593a44
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,15 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
         mMapView.setDaumMapApiKey(MapApiConst.DAUM_MAPS_ANDROID_APP_API_KEY);
         mMapView.setCurrentLocationEventListener(this);
 
+        tts=new TextToSpeech(getApplicationContext(),new TextToSpeech.OnInitListener(){
+            @Override
+            public void onInit(int status) {
+                if(status!=TextToSpeech.ERROR){
+                    tts.setLanguage(Locale.KOREAN);
+
+                }
+            }
+        });
         /* ProximityAlert */
         Log.d("slog", "onCreate()");
 
@@ -69,7 +84,7 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         mPendingIntentList = new ArrayList();
 
-        /* MapPoint 저장 배열 */
+        /* MapPoint 저장 배열 *///임의로 저장된값임
         mMapPointList = new ArrayList();
 
         mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.543682, 127.077555));
@@ -364,6 +379,7 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
             mLastReceivedIntent = null;
         }
     }
+    String text="";
 
     public void guide(int id){
         if(id!=0 && id!=mMapPointList.size() - 1){
@@ -424,64 +440,143 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 
             int time = 0;
 
-            if(cos1<cos2){
+            if(cos1<cos2){//cos2값이 올바른 길임
+
                 if(Math.cos(Math.toDegrees(0.0)) <= cos && cos < Math.cos(Math.toDegrees(15.0))){
                     //12시 방향
+                    text="12시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
                     time = 12;
                 }
                 else if(Math.cos(Math.toDegrees(15.0)) <= cos && cos < Math.cos(Math.toDegrees(45.0))){
                     //1시 방향
+                    text="1시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
                     time = 1;
                 }
                 else if(Math.cos(Math.toDegrees(45.0)) <= cos && cos < Math.cos(Math.toDegrees(75.0))){
                     //2시 방향
+                    text="2시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
                     time = 2;
                 }
                 else if(Math.cos(Math.toDegrees(75.0)) <= cos && cos < Math.cos(Math.toDegrees(105.0))){
                     //3시 방향
+                    text="3시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
                     time = 3;
                 }
                 else if(Math.cos(Math.toDegrees(105.0)) <= cos && cos < Math.cos(Math.toDegrees(135.0))){
                     //4시 방향
+                    text="4시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
                     time = 4;
                 }
                 else if(Math.cos(Math.toDegrees(135.0)) <= cos && cos < Math.cos(Math.toDegrees(165.0))){
                     //5시 방향
+                    text="5시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
                     time = 5;
                 }
                 else if(Math.cos(Math.toDegrees(165.0)) <= cos && cos < Math.cos(Math.toDegrees(180.0))){
                     //6시 방향
+                    text="6시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
                     time = 6;
                 }
             }
+
+
             else{
-                if(Math.cos(Math.toDegrees(180.0)) <= cos && cos < Math.cos(Math.toDegrees(195.0))){
-                    //6시 방향
-                    time = 6;
-                }
-                else if(Math.cos(Math.toDegrees(195.0)) <= cos && cos < Math.cos(Math.toDegrees(225.0))){
-                    //7시 방향
-                    time = 7;
-                }
-                else if(Math.cos(Math.toDegrees(225.0)) <= cos && cos < Math.cos(Math.toDegrees(255.0))){
-                    //8시 방향
-                    time = 8;
-                }
-                else if(Math.cos(Math.toDegrees(255.0)) <= cos && cos < Math.cos(Math.toDegrees(285.0))){
-                    //9시 방향
-                    time = 9;
-                }
-                else if(Math.cos(Math.toDegrees(285.0)) <= cos && cos < Math.cos(Math.toDegrees(315.0))){
-                    //10시 방향
-                    time = 10;
-                }
-                else if(Math.cos(Math.toDegrees(315.0)) <= cos && cos < Math.cos(Math.toDegrees(345.0))){
-                    //11시 방향
-                    time = 11;
-                }
-                else if(Math.cos(Math.toDegrees(345.0)) <= cos && cos < Math.cos(Math.toDegrees(360.0))) {
-                    //12 방향
+
+//                if(Math.cos(Math.toDegrees(180.0)) <= cos && cos < Math.cos(Math.toDegrees(195.0))){
+//                    //6시 방향
+//                    text="6시 방향으로 이동하십시오.";
+//                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+//                    time = 6;
+//                }
+//                else if(Math.cos(Math.toDegrees(195.0)) <= cos && cos < Math.cos(Math.toDegrees(225.0))){
+//                    //7시 방향
+//                    text="7시 방향으로 이동하십시오.";
+//                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+//                    time = 7;
+//                }
+//                else if(Math.cos(Math.toDegrees(225.0)) <= cos && cos < Math.cos(Math.toDegrees(255.0))){
+//                    //8시 방향
+//                    text="8시 방향으로 이동하십시오.";
+//                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+//                    time = 8;
+//                }
+//                else if(Math.cos(Math.toDegrees(255.0)) <= cos && cos < Math.cos(Math.toDegrees(285.0))){
+//                    //9시 방향
+//                    text="9시 방향으로 이동하십시오.";
+//                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+//                    time = 9;
+//                }
+//                else if(Math.cos(Math.toDegrees(285.0)) <= cos && cos < Math.cos(Math.toDegrees(315.0))){
+//                    //10시 방향
+//                    text="10시 방향으로 이동하십시오.";
+//                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+//                    time = 10;
+//                }
+//                else if(Math.cos(Math.toDegrees(315.0)) <= cos && cos < Math.cos(Math.toDegrees(345.0))){
+//                    //11시 방향
+//                    text="11시 방향으로 이동하십시오.";
+//                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+//                    time = 11;
+//                }
+//                else if(Math.cos(Math.toDegrees(345.0)) <= cos && cos < Math.cos(Math.toDegrees(360.0))) {
+//                    //12 방향
+//                    text="12시 방향으로 이동하십시오.";
+//                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+//
+//                    time = 12;
+//                }
+//                else if(Math.cos(Math.toDegrees(165.0)) <= cos && cos < Math.cos(Math.toDegrees(180.0))){
+//                    //6시 방향
+//                    time = 6;
+//                }
+                if(Math.cos(Math.toDegrees(0.0)) <= cos && cos < Math.cos(Math.toDegrees(15.0))){
+                    //12시 방향
+                    text="12시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
                     time = 12;
+                }
+                else if(Math.cos(Math.toDegrees(15.0)) <= cos && cos < Math.cos(Math.toDegrees(45.0))){
+                    //1시 방향
+                    text="1시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+                    time = 1;
+                }
+                else if(Math.cos(Math.toDegrees(45.0)) <= cos && cos < Math.cos(Math.toDegrees(75.0))){
+                    //2시 방향
+                    text="2시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+                    time = 2;
+                }
+                else if(Math.cos(Math.toDegrees(75.0)) <= cos && cos < Math.cos(Math.toDegrees(105.0))){
+                    //3시 방향
+                    text="3시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+                    time = 3;
+                }
+                else if(Math.cos(Math.toDegrees(105.0)) <= cos && cos < Math.cos(Math.toDegrees(135.0))){
+                    //4시 방향
+                    text="4시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+                    time = 4;
+                }
+                else if(Math.cos(Math.toDegrees(135.0)) <= cos && cos < Math.cos(Math.toDegrees(165.0))){
+                    //5시 방향
+                    text="5시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+                    time = 5;
+                }
+                else if(Math.cos(Math.toDegrees(165.0)) <= cos && cos < Math.cos(Math.toDegrees(180.0))){
+                    //6시 방향
+                    text="6시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+                    time = 6;
                 }
             }
 
@@ -489,9 +584,14 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
         }
         else if(id == 0){
             Toast.makeText(getApplicationContext(), "출발", Toast.LENGTH_LONG).show();
+            text="출발합니다. 뛰뛰빵빵";
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+
         }
         else if(id == mMapPointList.size() - 1){
             Toast.makeText(getApplicationContext(), "도착", Toast.LENGTH_LONG).show();
+            text="끼얏호 안전하게 도착!";
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
         }
     }
 

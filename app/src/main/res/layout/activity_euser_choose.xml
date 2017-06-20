@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="35dp"
+                android:layout_weight="1"
+                android:background="#00ff0000"
+                android:scaleType="centerInside"
+                android:onClick="ENProtector_Choose1"
+                app:srcCompat="@drawable/map_location" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/imageButton2"
+                android:layout_marginEnd="22dp"
+                android:background="#00ff0000"
+                android:scaleType="centerInside"
+                android:onClick="ENProtector_Choose2"
+                app:srcCompat="@drawable/position" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/imageButton2"
+                android:layout_below="@+id/imageButton2"
+                android:layout_marginTop="42dp"
+                android:text="좌표선택"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView8"
+                android:layout_alignEnd="@+id/imageButton3"
+                android:layout_alignTop="@+id/textView8"
+                android:layout_marginEnd="45dp"
+                android:gravity="center_horizontal"
+                android:text="현 사용자의 위치"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+</LinearLayout>

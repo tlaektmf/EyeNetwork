@@ -62,9 +62,9 @@ public class EJoinUserActivity extends AppCompatActivity{
 
 
         tts=new TextToSpeech(getApplicationContext(),new TextToSpeech.OnInitListener(){
-            @Override
-            public void onInit(int status) {
-                if(status!=TextToSpeech.ERROR){
+                    @Override
+                    public void onInit(int status) {
+                        if(status!=TextToSpeech.ERROR){
                     tts.setLanguage(Locale.KOREAN);
 
                 }

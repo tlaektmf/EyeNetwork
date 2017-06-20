@@ -60,7 +60,6 @@ public class MapViewActivity extends AppCompatActivity implements MapView.OpenAP
     private MapView mMapView;
     private ArrayList mMapPointList;
 
-
     //추가 시작
     ListView listView;
     EditText editText;
@@ -379,6 +378,7 @@ public class MapViewActivity extends AppCompatActivity implements MapView.OpenAP
                 DatabaseReference myRef = database.getReference(user.getUid()).child(formattedDate);//트리 헤드 이름
 
 
+
                 //해쉬테이블 이용합니당
                 Hashtable<String, String> dataDot
                         = new Hashtable<String, String>();
@@ -451,4 +451,31 @@ public class MapViewActivity extends AppCompatActivity implements MapView.OpenAP
         Log.i(LOG_TAG, String.format("MapView onMapViewZoomLevelChanged (%d)", zoomLevel));
     }
 
+    public void EnProtectorLocationCheck(View view) {
+        //사용자가 점찍은 걸 보낼지 말지 팝업창 띄워야한다.
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        alertDialogBuilder.setTitle("좌표 등록 여부 결정");
+
+        alertDialogBuilder.setMessage("현재 좌표들로 저장하시겠습니까?")
+                .setCancelable(false)
+                        .setPositiveButton("저장",new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //현재 좌표들을 저장한다.
+                              finish();
+                            }
+                        })
+                .setNegativeButton("취소",
+                        new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert=alertDialogBuilder.create();
+
+        alert.show();
+
+    }
 }

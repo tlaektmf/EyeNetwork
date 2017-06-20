@@ -92,8 +92,8 @@ public class ELoginActivity extends AppCompatActivity {
                 userLogin(stEmail2,stPassword2);
 
                 //자 이제 인텐트를 넘겨줘야됨//->로그인 success시 이동하도록 위치 변경
-               // Intent in=new Intent(ELoginActivity.this,EChatActivity.class);
-                //startActivity(in);
+               Intent in=new Intent(ELoginActivity.this,EUserActivity.class);
+                startActivity(in);
 
 
             }

@@ -4,7 +4,7 @@ package com.example.yangj.en_0617;
  * Created by 심다슬 on 2017-06-19.
  */
 
-public class EdataReadWrite {
+public class EdataReadWrite {//데이터를 올린다
 
     public String latitude;//올라오는 데이터 "키"값이랑 똑같아야돼
      public String longitude;//올라오는 데이터 키값이랑 똑같아야돼
