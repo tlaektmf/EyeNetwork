@@ -10,6 +10,7 @@ public class EdataReadWrite {
      public String sendedText;//올라오는 데이터 키값이랑 똑같아야돼
 
 
+
              public EdataReadWrite() {
                  // Default constructor required for calls to DataSnapshot.getValue(Comment.class)
              }
