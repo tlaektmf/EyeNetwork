@@ -71,12 +71,10 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 
         mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.543682, 127.077555));
         mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.543736, 127.076801));
-        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.544591, 127.076785));
-        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.545123, 127.076670));
-        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.545369, 127.076477));
-        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.545035, 127.075318));
-        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.545422, 127.074127));
-        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.546215, 127.074337));
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.545369,127.076477));
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.545035,127.075318));
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.545422,127.074127));
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.546215,127.074337));
 
         for (int i = 0; i < mMapPointList.size(); i++) {
             MapPoint temp = (MapPoint) mMapPointList.get(i);
@@ -344,16 +342,6 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 
             if(isEntering){
                 Toast.makeText(context, "목표 지점에 접근중..", Toast.LENGTH_LONG).show();
-                if(id!=0&&id!=mMapPointList.size()-1){
-                    MapPoint temp1 = (MapPoint) mMapPointList.get(id);
-                    double x1 = temp1.getMapPointGeoCoord().latitude;
-                    double y1 = temp1.getMapPointGeoCoord().longitude;
-
-                    MapPoint temp2 = (MapPoint) mMapPointList.get(id+1);
-                    double x2 = temp2.getMapPointGeoCoord().latitude;
-                    double y2 = temp2.getMapPointGeoCoord().longitude;
-                }
-
                 guide(id);
             }
 
@@ -422,75 +410,73 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
             double k1 = sqrt((vecAx)*vecAx + (vecAy)*vecAy)*sqrt((realx)*realx + (realy)*realy);
             double m1 = vecAx*realx + vecAy*realy;
             double cos1 = m1/k1;
-            Toast.makeText(getApplicationContext(), "cos1 : "+ cos1, Toast.LENGTH_LONG).show();
             double sin1 = sqrt(1-cos1*cos1);
 
             double k2 = sqrt((vecBx)*vecBx + (vecBy)*vecBy)*sqrt((realx)*realx + (realy)*realy);
             double m2 = vecBx*realx + vecBy*realy;
             double cos2 = m2/k2;
-            Toast.makeText(getApplicationContext(), "cos2 : "+ cos2, Toast.LENGTH_LONG).show();
             double sin2=sqrt(1-cos2*cos2);
 
             int time = 0;
 
-            if(cos1>=cos2){
+            if(cos1<cos2){
                 if(Math.cos(Math.toDegrees(0.0)) <= cos && cos < Math.cos(Math.toDegrees(15.0))){
                     //12시 방향
-                    time = 112;
+                    time = 12;
                 }
                 else if(Math.cos(Math.toDegrees(15.0)) <= cos && cos < Math.cos(Math.toDegrees(45.0))){
                     //1시 방향
-                    time = 101;
+                    time = 1;
                 }
                 else if(Math.cos(Math.toDegrees(45.0)) <= cos && cos < Math.cos(Math.toDegrees(75.0))){
                     //2시 방향
-                    time = 102;
+                    time = 2;
                 }
                 else if(Math.cos(Math.toDegrees(75.0)) <= cos && cos < Math.cos(Math.toDegrees(105.0))){
                     //3시 방향
-                    time = 103;
+                    time = 3;
                 }
                 else if(Math.cos(Math.toDegrees(105.0)) <= cos && cos < Math.cos(Math.toDegrees(135.0))){
                     //4시 방향
-                    time = 104;
+                    time = 4;
                 }
                 else if(Math.cos(Math.toDegrees(135.0)) <= cos && cos < Math.cos(Math.toDegrees(165.0))){
                     //5시 방향
-                    time = 105;
+                    time = 5;
                 }
                 else if(Math.cos(Math.toDegrees(165.0)) <= cos && cos < Math.cos(Math.toDegrees(180.0))){
                     //6시 방향
-                    time = 106;
+                    time = 6;
                 }
             }
             else{
                 if(Math.cos(Math.toDegrees(180.0)) <= cos && cos < Math.cos(Math.toDegrees(195.0))){
                     //6시 방향
-                    time = 206;
+                    time = 6;
                 }
                 else if(Math.cos(Math.toDegrees(195.0)) <= cos && cos < Math.cos(Math.toDegrees(225.0))){
                     //7시 방향
-                    time = 207;
+                    time = 7;
                 }
                 else if(Math.cos(Math.toDegrees(225.0)) <= cos && cos < Math.cos(Math.toDegrees(255.0))){
                     //8시 방향
-                    time = 208;
+                    time = 8;
                 }
                 else if(Math.cos(Math.toDegrees(255.0)) <= cos && cos < Math.cos(Math.toDegrees(285.0))){
                     //9시 방향
-                    time = 209;
+                    time = 9;
                 }
                 else if(Math.cos(Math.toDegrees(285.0)) <= cos && cos < Math.cos(Math.toDegrees(315.0))){
                     //10시 방향
-                    time = 210;
+                    time = 10;
                 }
                 else if(Math.cos(Math.toDegrees(315.0)) <= cos && cos < Math.cos(Math.toDegrees(345.0))){
                     //11시 방향
-                    time = 211;
+                    time = 11;
                 }
                 else if(Math.cos(Math.toDegrees(345.0)) <= cos && cos < Math.cos(Math.toDegrees(360.0))) {
                     //12 방향
-                    time = 212;
+                    time = 12;
                 }
             }
 
