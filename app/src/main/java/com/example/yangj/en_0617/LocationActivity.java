@@ -16,12 +16,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import net.daum.mf.map.api.MapCircle;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapReverseGeoCoder;
 import net.daum.mf.map.api.MapView;
 
 import java.util.ArrayList;
+
+import static java.lang.Math.sqrt;
 
 public class LocationActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener {
 
@@ -38,6 +41,7 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
     private CoffeeIntentReceiver mIntentReceiver;
 
     ArrayList mPendingIntentList;
+    private ArrayList mMapPointList;
 
     String intentKey = "coffeeProximity";
 
@@ -60,13 +64,29 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         mPendingIntentList = new ArrayList();
 
-        int countTargets = 2;
-        register(1001, 37.643879, 127.065918,30, -1);//목표지점(가상으로 찍어줌)
+        /* MapPoint 저장 배열 */
+        mMapPointList = new ArrayList();
+
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.543682, 127.077555));
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.543736, 127.076801));
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.544591, 127.076785));
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.545123, 127.076670));
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.545369, 127.076477));
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.545035, 127.075318));
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.545422, 127.074127));
+        mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.546215, 127.074337));
+
+        for(int i=0;i<mMapPointList.size();i++){
+            MapPoint temp = (MapPoint) mMapPointList.get(i);
+            register(i, temp.getMapPointGeoCoord().latitude, temp.getMapPointGeoCoord().longitude, 10, -1);
+        }
+
+        addCircles();
 
         mIntentReceiver = new CoffeeIntentReceiver(intentKey);
         registerReceiver(mIntentReceiver, mIntentReceiver.getFilter());
 
-        Toast.makeText(getApplicationContext(), countTargets + "개 지점에 대한 근접 리스너 등록", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), mMapPointList.size() + "개 지점에 대한 근접 리스너 등록", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -192,6 +212,19 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 
     }
 
+    private void addCircles() {
+        for (int i=0; i<mMapPointList.size();i++){
+            MapPoint point = (MapPoint) mMapPointList.get(i);
+            MapCircle temp = new MapCircle(MapPoint.mapPointWithGeoCoord(point.getMapPointGeoCoord().latitude, point.getMapPointGeoCoord().longitude),
+                    10,
+                    Color.argb(128, 255, 0, 0),
+                    Color.argb(128, 0, 255, 0));
+            temp.setTag(i);
+            mMapView.addCircle(temp);
+        }
+    }
+
+
     @Override
     public void onCurrentLocationDeviceHeadingUpdate(MapView mapView, float v) {
 
@@ -282,10 +315,11 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
          * @param intent
          */
         public void onReceive(Context context, Intent intent) {
+            int id = intent.getIntExtra("id", 0);
+
             if (intent != null) {
                 mLastReceivedIntent = intent;
 
-                int id = intent.getIntExtra("id", 0);
                 double latitude = intent.getDoubleExtra("latitude", 0.0D);
                 double longitude = intent.getDoubleExtra("longitude", 0.0D);
 
@@ -296,9 +330,10 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 
             boolean isEntering = intent.getBooleanExtra(LocationManager.KEY_PROXIMITY_ENTERING, false);
 
-            if(isEntering)
-
+            if(isEntering){
                 Toast.makeText(context, "목표 지점에 접근중..", Toast.LENGTH_LONG).show();
+                guide(id);
+            }
 
             else
 
@@ -312,6 +347,136 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 
         public void clearReceivedIntents() {
             mLastReceivedIntent = null;
+        }
+    }
+
+    public void guide(int id){
+        if(id!=0 && id!=mMapPointList.size() - 1){
+            MapPoint temp1 = (MapPoint) mMapPointList.get(id - 1);
+            double x1 = temp1.getMapPointGeoCoord().latitude;
+            double y1 = temp1.getMapPointGeoCoord().longitude;
+
+            MapPoint temp2 = (MapPoint) mMapPointList.get(id);
+            double x2 = temp2.getMapPointGeoCoord().latitude;
+            double y2 = temp2.getMapPointGeoCoord().longitude;
+
+            MapPoint temp3 = (MapPoint) mMapPointList.get(id + 1);
+            double x3 = temp3.getMapPointGeoCoord().latitude;
+            double y3 = temp3.getMapPointGeoCoord().longitude;
+
+            double ax = x1 - x2;
+            double ay = y1 - y2;
+
+            double bx = x2 - x3;
+            double by = y2 - y3;
+
+            double k = sqrt(ax*ax + ay*ay)*sqrt(bx*bx + by*by);
+            double m = ax*bx + ay*by;
+
+            double d1 = sqrt( (x2-x1)*(x2-x1)+(y2-y1)*(y2-y1) );
+            double d2 = sqrt( (x3-x2)*(x3-x2)+(y3-y2)*(y3-y2) );
+
+            double cos = m/k;
+            double sin = sqrt(1-cos*cos);
+
+            double x4 = ( x2*(d1+d2)-d2*x1 )/d1;
+            double y4 = ( y2*(d1+d2)-d2*y1 )/d1;
+
+            double new_x = cos*(x4-x2)+sin*(y4-y2)+x2;
+            double new_y = -sin*(x4-x2)+cos*(y4-y2)+y2;
+
+            double new_x2 = cos*(x4-x2)+-sin*(y4-y2)+x2;
+            double new_y2 = sin*(x4-x2)+cos*(y4-y2)+y2;
+
+            double vecAx = (new_x-x2);
+            double vecAy = (new_y-y2);
+
+            double realx=(x3-x2);
+            double realy=(y3-y2);
+
+            double vecBx=(new_x2-x2);
+            double vecBy=(new_y2-y2);
+
+            double k1 = sqrt((vecAx)*vecAx + (vecAy)*vecAy)*sqrt((realx)*realx + (realy)*realy);
+            double m1 = vecAx*realx + vecAy*realy;
+            double cos1 = m1/k1;
+            double sin1 = sqrt(1-cos1*cos1);
+
+            double k2 = sqrt((vecBx)*vecBx + (vecBy)*vecBy)*sqrt((realx)*realx + (realy)*realy);
+            double m2 = vecBx*realx + vecBy*realy;
+            double cos2 = m2/k2;
+            double sin2=sqrt(1-cos2*cos2);
+
+            int time = 0;
+
+            if(cos1>=cos2){
+                if(Math.cos(Math.toDegrees(0.0)) <= cos && cos < Math.cos(Math.toDegrees(15.0))){
+                    //12시 방향
+                    time = 112;
+                }
+                else if(Math.cos(Math.toDegrees(15.0)) <= cos && cos < Math.cos(Math.toDegrees(45.0))){
+                    //1시 방향
+                    time = 101;
+                }
+                else if(Math.cos(Math.toDegrees(45.0)) <= cos && cos < Math.cos(Math.toDegrees(75.0))){
+                    //2시 방향
+                    time = 102;
+                }
+                else if(Math.cos(Math.toDegrees(75.0)) <= cos && cos < Math.cos(Math.toDegrees(105.0))){
+                    //3시 방향
+                    time = 103;
+                }
+                else if(Math.cos(Math.toDegrees(105.0)) <= cos && cos < Math.cos(Math.toDegrees(135.0))){
+                    //4시 방향
+                    time = 104;
+                }
+                else if(Math.cos(Math.toDegrees(135.0)) <= cos && cos < Math.cos(Math.toDegrees(165.0))){
+                    //5시 방향
+                    time = 105;
+                }
+                else if(Math.cos(Math.toDegrees(165.0)) <= cos && cos < Math.cos(Math.toDegrees(180.0))){
+                    //6시 방향
+                    time = 106;
+                }
+            }
+            else{
+                if(Math.cos(Math.toDegrees(180.0)) <= cos && cos < Math.cos(Math.toDegrees(195.0))){
+                    //6시 방향
+                    time = 206;
+                }
+                else if(Math.cos(Math.toDegrees(195.0)) <= cos && cos < Math.cos(Math.toDegrees(225.0))){
+                    //7시 방향
+                    time = 207;
+                }
+                else if(Math.cos(Math.toDegrees(225.0)) <= cos && cos < Math.cos(Math.toDegrees(255.0))){
+                    //8시 방향
+                    time = 208;
+                }
+                else if(Math.cos(Math.toDegrees(255.0)) <= cos && cos < Math.cos(Math.toDegrees(285.0))){
+                    //9시 방향
+                    time = 209;
+                }
+                else if(Math.cos(Math.toDegrees(285.0)) <= cos && cos < Math.cos(Math.toDegrees(315.0))){
+                    //10시 방향
+                    time = 210;
+                }
+                else if(Math.cos(Math.toDegrees(315.0)) <= cos && cos < Math.cos(Math.toDegrees(345.0))){
+                    //11시 방향
+                    time = 211;
+                }
+                else if(Math.cos(Math.toDegrees(345.0)) <= cos && cos < Math.cos(Math.toDegrees(360.0))) {
+                    //12 방향
+                    time = 212;
+                }
+            }
+
+            Toast.makeText(getApplicationContext(), time + "시 방향으로 이동", Toast.LENGTH_LONG).show();
+        }
+        else if(id == 0){
+            Toast.makeText(getApplicationContext(), "출발", Toast.LENGTH_LONG).show();
+        }
+        else if(id == mMapPointList.size() - 1){
+            Toast.makeText(getApplicationContext(), "도착", Toast.LENGTH_LONG).show();
         }
     }
 }

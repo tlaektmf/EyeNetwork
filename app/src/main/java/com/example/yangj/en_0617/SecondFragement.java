@@ -15,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import net.daum.android.map.MapActivity;
+
 import java.util.Locale;
 
 /**
@@ -57,7 +59,7 @@ public class SecondFragement extends Fragment{
                 //여기서만 버튼 처리 해주세용.. Fragment는 매우예민행ㅠ
                 //로그인창입니다.
                 Toast.makeText(getActivity(),"버튼 클릭",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), EUserActivity.class);
+                Intent intent = new Intent(getActivity(), LocationActivity.class/*EUserActivity.class*/);
                 startActivity(intent);
             }
         });

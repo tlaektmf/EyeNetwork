@@ -11,6 +11,7 @@ public class EPointOutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_epoint_out);
 
-        Toast.makeText(EPointOutActivity.this,"여기",Toast.LENGTH_SHORT).show();
+        Toast.makeText(EPointOutActivity.this,"여기",Toast.LENGTH_SHORT).show();//엑티비티 바뀌는것 확인
+
     }
 }
