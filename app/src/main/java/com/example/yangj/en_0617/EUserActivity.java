@@ -17,13 +17,12 @@ public class EUserActivity extends Activity{
 
     }
 
-    public void EUserStartCheck(View view) {
-        //시작 버튼 클릭시
 
+    public void EUserStartCheck(View view) {
+        //시작버튼을 누를시
     }
 
     public void EUserDeleteCheck(View view) {
-        //중단 버튼 클릭시
-
+        //중단버튼을 누를시
     }
 }

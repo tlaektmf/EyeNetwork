@@ -147,7 +147,7 @@ public class ELoginActivity extends AppCompatActivity {
                         else{
 
                             //로그인이 성공 했다면 intent를 넘겨준다다
-                           Intent in=new Intent(ELoginActivity.this,LocationActivity.class/*EChatActivity.class*/);
+                           Intent in=new Intent(ELoginActivity.this,MapViewActivity.class/*EChatActivity.class*/);
                             startActivity(in);
                             pbLogin.setVisibility(View.GONE);
 

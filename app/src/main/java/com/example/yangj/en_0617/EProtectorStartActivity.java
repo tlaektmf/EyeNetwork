@@ -18,12 +18,14 @@ public class EProtectorStartActivity extends Activity {
     }
 
     public void ENjoinProtectorClick(View view) {
-        Intent intent = new Intent(getApplicationContext(), ELoginActivity.class);
+        Intent intent = new Intent(getApplicationContext(),  EJoinActivity.class);
         startActivity(intent);
+
     }
 
     public void ENLoginProtectorClick(View view) {
-        Intent intent = new Intent(getApplicationContext(),  EJoinActivity.class);
+        //보호자가 로그인했을 때
+        Intent intent = new Intent(getApplicationContext(), ELoginActivity.class);
         startActivity(intent);
     }
 }
