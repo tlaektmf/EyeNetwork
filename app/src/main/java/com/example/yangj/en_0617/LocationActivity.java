@@ -52,12 +52,12 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
     double get_latitude = 0;
     double get_longitude = 0;
 
-<<<<<<< HEAD
+
     double now_latitude;
     double now_longitude;
-=======
+
     TextToSpeech tts;
->>>>>>> 3dc5d28fc8b3d820418655f016395a6b05593a44
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
