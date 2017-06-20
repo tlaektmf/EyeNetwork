@@ -11,53 +11,55 @@
           android:layout_width="368dp"
           android:layout_height="495dp"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_editor_absoluteY="8dp"
+        android:id="@+id/relativeLayout2"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true">
 
-        <Button
-            android:id="@+id/btnRegister"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#00ff0000"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/eyes_"
             android:layout_above="@+id/etJoinID"
-            android:layout_alignStart="@+id/etJoinID"
-            android:layout_marginBottom="58dp"
-            android:layout_marginStart="44dp"
-
-            android:text="등록" />
+            android:layout_centerHorizontal="true" />
 
         <EditText
             android:id="@+id/etJoinID"
             android:layout_width="219dp"
             android:layout_height="61dp"
-            android:layout_above="@+id/etJoinPassword"
-            android:layout_alignStart="@+id/etJoinPassword"
-            android:layout_marginBottom="46dp"
             android:hint="E-MAIL"
             android:inputType="textEmailAddress"
             tools:layout_editor_absoluteX="83dp"
-            tools:layout_editor_absoluteY="201dp" />
+            tools:layout_editor_absoluteY="201dp"
+            android:layout_above="@+id/etJoinPassword"
+            android:layout_alignStart="@+id/etJoinPassword" />
 
         <EditText
             android:id="@+id/etJoinPassword"
             android:layout_width="226dp"
             android:layout_height="58dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="179dp"
-            android:layout_marginStart="57dp"
+            android:layout_marginBottom="137dp"
             android:hint="PASSWORD"
             android:inputType="textPassword"
             tools:layout_editor_absoluteX="83dp"
-            tools:layout_editor_absoluteY="303dp" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/etJoinID"
+            tools:layout_editor_absoluteY="303dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="89dp"
-            android:layout_marginEnd="17dp"
-            android:text="회원가입창입니다." />
+            android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:id="@+id/btnRegister"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#00ff0000"
+            android:scaleType="centerInside"
+            android:layout_marginBottom="50dp"
+            app:srcCompat="@drawable/chain"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
+
 </RelativeLayout>

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -75,7 +76,7 @@ public class ELoginActivity extends AppCompatActivity {
         /*
         버튼을 눌렀을 경우 로그인 창->로그인 됐는지 확인
          */
-        Button btnLogin=(Button)findViewById(R.id.btnLogin);
+        ImageButton btnLogin=(ImageButton)findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +147,7 @@ public class ELoginActivity extends AppCompatActivity {
                         else{
 
                             //로그인이 성공 했다면 intent를 넘겨준다다
-                           Intent in=new Intent(ELoginActivity.this,LocationActivity.class/*EChatActivity.class*/);
+                           Intent in=new Intent(ELoginActivity.this,MapViewActivity.class/*EChatActivity.class*/);
                             startActivity(in);
                             pbLogin.setVisibility(View.GONE);
 

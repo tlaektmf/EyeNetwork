@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -59,7 +60,7 @@ public class EJoinActivity extends AppCompatActivity {
          */
         etEmail1=(EditText)findViewById(R.id.etJoinID);
         etPassword1=(EditText)findViewById(R.id.etJoinPassword);
-        Button btnRegister=(Button)findViewById(R.id.btnRegister);//등록버튼을 누른다
+        ImageButton btnRegister=(ImageButton)findViewById(R.id.btnRegister);//등록버튼을 누른다
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

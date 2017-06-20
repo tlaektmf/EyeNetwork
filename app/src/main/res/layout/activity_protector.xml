@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5EBE2">
@@ -14,29 +15,33 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <Button
-                android:id="@+id/button8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/button9"
-                android:layout_alignBottom="@+id/button9"
-                android:layout_marginEnd="55dp"
-                android:layout_toStartOf="@+id/button9"
-                android:layout_weight="1"
-                android:onClick="ENjoinProtectorClick"
-                android:text="회원가입" />
 
-            <Button
+            <ImageButton
+                android:id="@+id/button8"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+
+                android:onClick="ENjoinProtectorClick"
+                android:scaleType="centerInside"
+                android:src="@drawable/chain"
+                android:layout_marginEnd="53dp"
+                android:background="#00ff0000"
+                android:layout_alignTop="@+id/button9"
+                android:layout_alignParentEnd="true" />
+
+            <ImageButton
                 android:id="@+id/button9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginEnd="78dp"
-                android:layout_marginTop="204dp"
-                android:layout_weight="1"
+                android:layout_marginStart="51dp"
+                android:layout_marginTop="152dp"
                 android:onClick="ENLoginProtectorClick"
-                android:text="로그인" />
+                android:scaleType="centerInside"
+                android:background="#00ff0000"
+                android:src="@drawable/padlock"
+                />
         </RelativeLayout>
 
     </LinearLayout>

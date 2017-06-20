@@ -400,14 +400,14 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
             double new_x2 = cos*(x4-x2)+-sin*(y4-y2)+x2;
             double new_y2 = sin*(x4-x2)+cos*(y4-y2)+y2;
 
-            double vecAx = (new_x-x2);
-            double vecAy = (new_y-y2);
+            double vecAx = (x2-new_x);
+            double vecAy = (y2-new_y);
 
-            double realx=(x3-x2);
-            double realy=(y3-y2);
+            double realx=(x2-x3);
+            double realy=(y2-y3);
 
-            double vecBx=(new_x2-x2);
-            double vecBy=(new_y2-y2);
+            double vecBx=(x2-new_x2);
+            double vecBy=(y2-new_y2);
 
             double k1 = sqrt((vecAx)*vecAx + (vecAy)*vecAy)*sqrt((realx)*realx + (realy)*realy);
             double m1 = vecAx*realx + vecAy*realy;
