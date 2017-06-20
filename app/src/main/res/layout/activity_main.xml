@@ -23,14 +23,15 @@
 
             <Button
                 android:id="@+id/button4"
-                android:layout_width="match_parent"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignStart="@+id/textView4"
-                android:layout_marginBottom="103dp"
+                android:layout_marginBottom="102dp"
                 android:onClick="ENStartCheck"
                 android:background="#00ff0000"
-                android:text="보호자이십니까?" />
+                android:text="보호자이십니까?"
+                android:layout_marginStart="93dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -44,6 +45,17 @@
                 tools:layout_editor_absoluteY="248dp"
                 android:layout_above="@+id/button4"
                 android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/gloves"
+                android:scaleType="centerInside"
+                android:background="#00ff0000"
+                android:layout_marginStart="14dp"
+                android:layout_below="@+id/textView4"
+                android:layout_toEndOf="@+id/button4" />
 
         </RelativeLayout>
 
