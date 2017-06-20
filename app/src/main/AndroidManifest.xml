@@ -9,7 +9,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/eyes_"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -30,21 +30,11 @@
         <activity android:name=".EStartActionActivity" />
         <activity android:name=".EProtectorStartActivity" />
         <activity android:name=".MapViewActivity" />
-        <activity android:name=".EStartActionActivity"/>
-        <activity android:name=".EProtectorStartActivity"/>
-
-
-        <activity android:name=".EStartActionActivity" />
-        <activity android:name=".EProtectorStartActivity" />
-        <activity android:name=".MapViewActivity" />
 
         <activity android:name=".EJoinUserActivity"/>
         <activity android:name=".EUserActivity"/>
-
-        <activity android:name=".MapViewActivity"></activity>
-
-        <activity android:name=".EPointOutActivity"></activity>
-
+        <activity android:name=".EPointOutActivity">
+        </activity>
 
 
     </application>

@@ -7,9 +7,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -45,8 +47,8 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 
     String intentKey = "coffeeProximity";
 
-    double get_latitude=0;
-    double get_longitude=0;
+    double get_latitude = 0;
+    double get_longitude = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
         mMapView.setCurrentLocationEventListener(this);
 
         /* ProximityAlert */
-        Log.d("slog","onCreate()");
+        Log.d("slog", "onCreate()");
 
         // 위치 관리자 객체 참조
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -76,7 +78,7 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
         mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.545422, 127.074127));
         mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.546215, 127.074337));
 
-        for(int i=0;i<mMapPointList.size();i++){
+        for (int i = 0; i < mMapPointList.size(); i++) {
             MapPoint temp = (MapPoint) mMapPointList.get(i);
             register(i, temp.getMapPointGeoCoord().latitude, temp.getMapPointGeoCoord().longitude, 10, -1);
         }
@@ -213,7 +215,7 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
     }
 
     private void addCircles() {
-        for (int i=0; i<mMapPointList.size();i++){
+        for (int i = 0; i < mMapPointList.size(); i++) {
             MapPoint point = (MapPoint) mMapPointList.get(i);
             MapCircle temp = new MapCircle(MapPoint.mapPointWithGeoCoord(point.getMapPointGeoCoord().latitude, point.getMapPointGeoCoord().longitude),
                     10,
@@ -264,6 +266,16 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
         proximityIntent.putExtra("longitude", longitude);
         PendingIntent intent = PendingIntent.getBroadcast(this, id, proximityIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         mLocationManager.addProximityAlert(latitude, longitude, radius, expiration, intent);
         //parameter값들을 이용해서 넘김(등록)
         //intent는 팬딩인텐트, 인텐트가 시스템에 넘겨졌을 때 바로 실행되는게 아니라
