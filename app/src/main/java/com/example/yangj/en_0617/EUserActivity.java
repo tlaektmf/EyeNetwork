@@ -20,7 +20,7 @@ public class EUserActivity extends Activity{
 
    public void ENProtector_Choose1(View view) {
         //길 좌표를 찍어주세요
-        Intent intent = new Intent(this,LocationActivity.class);
+        Intent intent = new Intent(this,MapViewActivity.class);//여리야 여기는 mapviewactivity입니다
         startActivity(intent);
     }
 

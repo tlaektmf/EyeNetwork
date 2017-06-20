@@ -319,7 +319,7 @@ public class MapViewActivity extends AppCompatActivity implements MapView.OpenAP
     public void onMapViewInitialized(MapView mapView) {
         Log.i(LOG_TAG, "MapView had loaded. Now, MapView APIs could be called safely");
         //mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
-        mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(37.537229,127.005515), 2, true);
+        mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(37.543686,127.077454), 2, true);
     }
 
     @Override
