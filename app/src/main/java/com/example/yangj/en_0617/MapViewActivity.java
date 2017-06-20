@@ -378,6 +378,7 @@ public class MapViewActivity extends AppCompatActivity implements MapView.OpenAP
                 DatabaseReference myRef = database.getReference(user.getUid()).child(formattedDate);//트리 헤드 이름
 
 
+
                 //해쉬테이블 이용합니당
                 Hashtable<String, String> dataDot
                         = new Hashtable<String, String>();

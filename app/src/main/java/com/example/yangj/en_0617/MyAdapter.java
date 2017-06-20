@@ -14,6 +14,8 @@ import java.util.List;
  * Created by 심다슬 on 2017-06-19.
  */
 
+//데이터 넘겨주는 클래스
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private String[] mDataset;
 
