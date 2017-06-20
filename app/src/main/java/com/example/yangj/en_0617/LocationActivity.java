@@ -332,6 +332,16 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 
             if(isEntering){
                 Toast.makeText(context, "목표 지점에 접근중..", Toast.LENGTH_LONG).show();
+                if(id!=0&&id!=mMapPointList.size()-1){
+                    MapPoint temp1 = (MapPoint) mMapPointList.get(id);
+                    double x1 = temp1.getMapPointGeoCoord().latitude;
+                    double y1 = temp1.getMapPointGeoCoord().longitude;
+
+                    MapPoint temp2 = (MapPoint) mMapPointList.get(id+1);
+                    double x2 = temp2.getMapPointGeoCoord().latitude;
+                    double y2 = temp2.getMapPointGeoCoord().longitude;
+                }
+
                 guide(id);
             }
 
@@ -400,11 +410,13 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
             double k1 = sqrt((vecAx)*vecAx + (vecAy)*vecAy)*sqrt((realx)*realx + (realy)*realy);
             double m1 = vecAx*realx + vecAy*realy;
             double cos1 = m1/k1;
+            Toast.makeText(getApplicationContext(), "cos1 : "+ cos1, Toast.LENGTH_LONG).show();
             double sin1 = sqrt(1-cos1*cos1);
 
             double k2 = sqrt((vecBx)*vecBx + (vecBy)*vecBy)*sqrt((realx)*realx + (realy)*realy);
             double m2 = vecBx*realx + vecBy*realy;
             double cos2 = m2/k2;
+            Toast.makeText(getApplicationContext(), "cos2 : "+ cos2, Toast.LENGTH_LONG).show();
             double sin2=sqrt(1-cos2*cos2);
 
             int time = 0;
