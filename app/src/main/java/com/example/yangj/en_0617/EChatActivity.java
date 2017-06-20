@@ -154,7 +154,7 @@ public class EChatActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //자 이제 인텐트를 넘겨줘야됨
 
-                Intent in=new Intent(EChatActivity.this, MapViewActivity.class);
+                Intent in=new Intent(EChatActivity.this, LocationActivity.class);//여리야 여기는 locationview야~~~~
 
                 startActivity(in);
             }
