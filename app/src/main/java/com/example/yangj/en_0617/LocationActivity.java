@@ -79,7 +79,7 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         mPendingIntentList = new ArrayList();
 
-        /* MapPoint 저장 배열 */
+        /* MapPoint 저장 배열 *///임의로 저장된값임
         mMapPointList = new ArrayList();
 
         mMapPointList.add(MapPoint.mapPointWithGeoCoord(37.543682, 127.077555));
@@ -481,81 +481,96 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 
 
             else{
-                if(Math.cos(Math.toDegrees(180.0)) <= cos && cos < Math.cos(Math.toDegrees(195.0))){
+
+//                if(Math.cos(Math.toDegrees(180.0)) <= cos && cos < Math.cos(Math.toDegrees(195.0))){
+//                    //6시 방향
+//                    text="6시 방향으로 이동하십시오.";
+//                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+//                    time = 6;
+//                }
+//                else if(Math.cos(Math.toDegrees(195.0)) <= cos && cos < Math.cos(Math.toDegrees(225.0))){
+//                    //7시 방향
+//                    text="7시 방향으로 이동하십시오.";
+//                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+//                    time = 7;
+//                }
+//                else if(Math.cos(Math.toDegrees(225.0)) <= cos && cos < Math.cos(Math.toDegrees(255.0))){
+//                    //8시 방향
+//                    text="8시 방향으로 이동하십시오.";
+//                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+//                    time = 8;
+//                }
+//                else if(Math.cos(Math.toDegrees(255.0)) <= cos && cos < Math.cos(Math.toDegrees(285.0))){
+//                    //9시 방향
+//                    text="9시 방향으로 이동하십시오.";
+//                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+//                    time = 9;
+//                }
+//                else if(Math.cos(Math.toDegrees(285.0)) <= cos && cos < Math.cos(Math.toDegrees(315.0))){
+//                    //10시 방향
+//                    text="10시 방향으로 이동하십시오.";
+//                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+//                    time = 10;
+//                }
+//                else if(Math.cos(Math.toDegrees(315.0)) <= cos && cos < Math.cos(Math.toDegrees(345.0))){
+//                    //11시 방향
+//                    text="11시 방향으로 이동하십시오.";
+//                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+//                    time = 11;
+//                }
+//                else if(Math.cos(Math.toDegrees(345.0)) <= cos && cos < Math.cos(Math.toDegrees(360.0))) {
+//                    //12 방향
+//                    text="12시 방향으로 이동하십시오.";
+//                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+//
+//                    time = 12;
+//                }
+//                else if(Math.cos(Math.toDegrees(165.0)) <= cos && cos < Math.cos(Math.toDegrees(180.0))){
+//                    //6시 방향
+//                    time = 6;
+//                }
+                if(Math.cos(Math.toDegrees(0.0)) <= cos && cos < Math.cos(Math.toDegrees(15.0))){
+                    //12시 방향
+                    text="12시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+                    time = 12;
+                }
+                else if(Math.cos(Math.toDegrees(15.0)) <= cos && cos < Math.cos(Math.toDegrees(45.0))){
+                    //1시 방향
+                    text="1시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+                    time = 1;
+                }
+                else if(Math.cos(Math.toDegrees(45.0)) <= cos && cos < Math.cos(Math.toDegrees(75.0))){
+                    //2시 방향
+                    text="2시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+                    time = 2;
+                }
+                else if(Math.cos(Math.toDegrees(75.0)) <= cos && cos < Math.cos(Math.toDegrees(105.0))){
+                    //3시 방향
+                    text="3시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+                    time = 3;
+                }
+                else if(Math.cos(Math.toDegrees(105.0)) <= cos && cos < Math.cos(Math.toDegrees(135.0))){
+                    //4시 방향
+                    text="4시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+                    time = 4;
+                }
+                else if(Math.cos(Math.toDegrees(135.0)) <= cos && cos < Math.cos(Math.toDegrees(165.0))){
+                    //5시 방향
+                    text="5시 방향으로 이동하십시오.";
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+                    time = 5;
+                }
+                else if(Math.cos(Math.toDegrees(165.0)) <= cos && cos < Math.cos(Math.toDegrees(180.0))){
                     //6시 방향
                     text="6시 방향으로 이동하십시오.";
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
                     time = 6;
                 }
-                else if(Math.cos(Math.toDegrees(195.0)) <= cos && cos < Math.cos(Math.toDegrees(225.0))){
-                    //7시 방향
-                    text="7시 방향으로 이동하십시오.";
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
-                    time = 7;
-                }
-                else if(Math.cos(Math.toDegrees(225.0)) <= cos && cos < Math.cos(Math.toDegrees(255.0))){
-                    //8시 방향
-                    text="8시 방향으로 이동하십시오.";
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
-                    time = 8;
-                }
-                else if(Math.cos(Math.toDegrees(255.0)) <= cos && cos < Math.cos(Math.toDegrees(285.0))){
-                    //9시 방향
-                    text="9시 방향으로 이동하십시오.";
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
-                    time = 9;
-                }
-                else if(Math.cos(Math.toDegrees(285.0)) <= cos && cos < Math.cos(Math.toDegrees(315.0))){
-                    //10시 방향
-                    text="10시 방향으로 이동하십시오.";
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
-                    time = 10;
-                }
-                else if(Math.cos(Math.toDegrees(315.0)) <= cos && cos < Math.cos(Math.toDegrees(345.0))){
-                    //11시 방향
-                    text="11시 방향으로 이동하십시오.";
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
-                    time = 11;
-                }
-                else if(Math.cos(Math.toDegrees(345.0)) <= cos && cos < Math.cos(Math.toDegrees(360.0))) {
-                    //12 방향
-                    text="12시 방향으로 이동하십시오.";
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
-
-                    time = 12;
-                }
-                else if(Math.cos(Math.toDegrees(165.0)) <= cos && cos < Math.cos(Math.toDegrees(180.0))){
-                    //6시 방향
-                    time = 6;
-                }
-//                if(Math.cos(Math.toDegrees(180.0)) <= cos && cos < Math.cos(Math.toDegrees(195.0))){
-//                    //6시 방향
-//                    time = 6;
-//                }
-//                else if(Math.cos(Math.toDegrees(195.0)) <= cos && cos < Math.cos(Math.toDegrees(225.0))){
-//                    //7시 방향
-//                    time = 7;
-//                }
-//                else if(Math.cos(Math.toDegrees(225.0)) <= cos && cos < Math.cos(Math.toDegrees(255.0))){
-//                    //8시 방향
-//                    time = 8;
-//                }
-//                else if(Math.cos(Math.toDegrees(255.0)) <= cos && cos < Math.cos(Math.toDegrees(285.0))){
-//                    //9시 방향
-//                    time = 9;
-//                }
-//                else if(Math.cos(Math.toDegrees(285.0)) <= cos && cos < Math.cos(Math.toDegrees(315.0))){
-//                    //10시 방향
-//                    time = 10;
-//                }
-//                else if(Math.cos(Math.toDegrees(315.0)) <= cos && cos < Math.cos(Math.toDegrees(345.0))){
-//                    //11시 방향
-//                    time = 11;
-//                }
-//                else if(Math.cos(Math.toDegrees(345.0)) <= cos && cos < Math.cos(Math.toDegrees(360.0))) {
-//                    //12 방향
-//                    time = 12;
-//                }
             }
 
             Toast.makeText(getApplicationContext(), time + "시 방향으로 이동", Toast.LENGTH_LONG).show();
