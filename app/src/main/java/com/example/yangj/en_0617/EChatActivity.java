@@ -155,7 +155,7 @@ public class EChatActivity extends AppCompatActivity {
                 //자 이제 인텐트를 넘겨줘야됨
 
                 Intent in=new Intent(EChatActivity.this, LocationActivity.class);//여리야 여기는 locationview야~~~~
-
+                //근접경보
                 startActivity(in);
             }
         });

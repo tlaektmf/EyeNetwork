@@ -94,7 +94,7 @@ public class ELoginActivity extends AppCompatActivity {
                 //자 이제 인텐트를 넘겨줘야됨//->로그인 success시 이동하도록 위치 변경
                Intent in=new Intent(ELoginActivity.this,EUserActivity.class);
                 startActivity(in);
-
+                finish();
 
             }
         });
