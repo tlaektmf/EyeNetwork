@@ -50,6 +50,9 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
     double get_latitude = 0;
     double get_longitude = 0;
 
+    double now_latitude;
+    double now_longitude;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +102,8 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
     @Override
     public void onCurrentLocationUpdate(MapView mapView, MapPoint currentLocation, float accuracyInMeters) {
         MapPoint.GeoCoordinate mapPointGeo = currentLocation.getMapPointGeoCoord();
+        now_latitude = mapPointGeo.latitude;
+        now_longitude = mapPointGeo.longitude;
         Log.i(LOG_TAG, String.format("MapView onCurrentLocationUpdate (%f,%f) accuracy (%f)", mapPointGeo.latitude, mapPointGeo.longitude, accuracyInMeters));
     }
 
@@ -345,10 +350,10 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
                 guide(id);
             }
 
-            else
-
+            else{
                 Toast.makeText(context, "목표 지점에서 벗어납니다.", Toast.LENGTH_LONG).show();
-
+                check(id);
+            }
         }
 
         public Intent getLastReceivedIntent() {
@@ -487,6 +492,35 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
         }
         else if(id == mMapPointList.size() - 1){
             Toast.makeText(getApplicationContext(), "도착", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void check(int id){
+        MapPoint temp1 = (MapPoint) mMapPointList.get(id);
+        double x1 = temp1.getMapPointGeoCoord().latitude;
+        double y1 = temp1.getMapPointGeoCoord().longitude;
+
+        MapPoint temp2 = (MapPoint) mMapPointList.get(id + 1);
+        double x2 = temp2.getMapPointGeoCoord().latitude;
+        double y2 = temp2.getMapPointGeoCoord().longitude;
+
+        double nowx = now_latitude;
+        double nowy = now_longitude;
+
+        double ax = x1 - x2;
+        double ay = y1 - y2;
+
+        double bx = x1 - nowx;
+        double by = y1 - nowy;
+
+        double k = sqrt(ax*ax + ay*ay)*sqrt(bx*bx + by*by);
+        double m = ax*bx + ay*by;
+        double cos = m/k;
+
+        Toast.makeText(getApplicationContext(), "cos : " + cos, Toast.LENGTH_SHORT).show();
+
+        if(cos < Math.cos(Math.toDegrees(15.0))){
+            Toast.makeText(getApplicationContext(), "경로를 이탈 했습니다.", Toast.LENGTH_LONG).show();
         }
     }
 }
