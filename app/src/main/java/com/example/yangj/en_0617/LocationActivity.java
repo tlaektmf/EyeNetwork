@@ -620,7 +620,8 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
         Toast.makeText(getApplicationContext(), "cos : " + cos, Toast.LENGTH_SHORT).show();
 
         if(cos < Math.cos(Math.toDegrees(15.0))){
-            Toast.makeText(getApplicationContext(), "경로를 이탈 했습니다.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "경로를 이탈 했습니다. 다시 돌아가 주세요.", Toast.LENGTH_LONG).show();
+            guide(id);
         }
     }
 }
