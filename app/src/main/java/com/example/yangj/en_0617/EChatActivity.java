@@ -92,7 +92,6 @@ public class EChatActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference(user.getUid());//읽어올 트리 헤드 이름(값이 미리 존재해야 읽을 수 있음)
 
 
-
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -153,7 +152,7 @@ public class EChatActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //자 이제 인텐트를 넘겨줘야됨
 
-                Intent in=new Intent(EChatActivity.this,EPointOutActivity.class);
+                Intent in=new Intent(EChatActivity.this,LocationActivity.class);
 
                 startActivity(in);
             }

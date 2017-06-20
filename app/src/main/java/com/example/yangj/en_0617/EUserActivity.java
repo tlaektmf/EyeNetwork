@@ -13,16 +13,8 @@ public class EUserActivity extends Activity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+        setContentView(R.layout.activity_euser_choose);
 
     }
 
-
-    public void EUserStartCheck(View view) {
-        //시작버튼을 누를시
-    }
-
-    public void EUserDeleteCheck(View view) {
-        //중단버튼을 누를시
-    }
 }
