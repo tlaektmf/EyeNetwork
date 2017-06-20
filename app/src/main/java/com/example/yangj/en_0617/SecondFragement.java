@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import net.daum.android.map.MapActivity;
+import net.daum.android.map.MapView;
 
 import java.util.Locale;
 
@@ -24,8 +25,9 @@ import java.util.Locale;
  */
 
 public class SecondFragement extends Fragment{
+
     TextToSpeech tts;
-    Button button;
+    ImageButton button;
     boolean ttsActive=false;
 
     public SecondFragement(){
@@ -51,7 +53,7 @@ public class SecondFragement extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         RelativeLayout layout=(RelativeLayout)inflater.inflate(R.layout.activity_login,container,false);
-        ImageButton button=(ImageButton)layout.findViewById(R.id.btnLogin);
+        button=(ImageButton)layout.findViewById(R.id.btnLogin);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
