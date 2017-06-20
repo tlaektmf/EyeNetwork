@@ -67,24 +67,25 @@
                 android:background="@drawable/rounded"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/imageButton2"
-                android:layout_below="@+id/imageButton2"
                 android:layout_marginTop="42dp"
                 android:text="좌표선택"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_marginStart="22dp"
+                android:layout_below="@+id/imageButton2"
+                android:layout_alignStart="@+id/textView15" />
 
             <TextView
                 android:id="@+id/textView9"
                 android:background="@drawable/rounded"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/textView8"
-                android:layout_alignEnd="@+id/imageButton3"
-                android:layout_alignTop="@+id/textView8"
-                android:layout_marginEnd="45dp"
+                android:layout_marginEnd="14dp"
                 android:gravity="center_horizontal"
                 android:text="현 사용자의 위치"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_alignBaseline="@+id/textView8"
+                android:layout_alignBottom="@+id/textView8"
+                android:layout_alignEnd="@+id/imageButton3" />
 
         </RelativeLayout>
 
