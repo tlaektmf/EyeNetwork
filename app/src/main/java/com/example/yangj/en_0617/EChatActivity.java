@@ -62,6 +62,7 @@ public class EChatActivity extends AppCompatActivity {
 
              email = user.getEmail();//사용자 이메일을 받아오는 함수
 
+
         }
 
         //listView=(ListView)findViewById(R.id.listView);
@@ -100,9 +101,10 @@ public class EChatActivity extends AppCompatActivity {
                 EdataReadWrite comment = dataSnapshot.getValue(EdataReadWrite.class);
 
 
+
                                      // [START_EXCLUDE]
                                      // Update RecyclerView
-                                     //mCommentIds.add(dataSnapshot.getKey());
+
                                      mComments.add(comment);//list를 만들어줌
                                      mAdapter.notifyItemInserted(mComments.size() - 1);//아이템이 들어가면 반영한다
                                   // [END_EXCLUDE]
@@ -130,7 +132,7 @@ public class EChatActivity extends AppCompatActivity {
             }
         });
 
-      //있으면 편리함
+      //있으면 편리함//로그인 화면으로 돌아가짐(시각장애인의 끝내기 버튼)
         Button btnFinish=(Button)findViewById(R.id.btn_finish);
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,6 +164,7 @@ public class EChatActivity extends AppCompatActivity {
          /*
         보내기 버튼을 눌렀을 경우
          */
+         //데이터 등록
         Button btnSend=(Button)findViewById(R.id.send);
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override

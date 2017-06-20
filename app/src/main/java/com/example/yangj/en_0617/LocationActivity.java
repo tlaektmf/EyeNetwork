@@ -419,7 +419,7 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 
             int time = 0;
 
-            if(cos1<cos2){
+            if(cos1<cos2){//cos2값이 올바른 길임
                 if(Math.cos(Math.toDegrees(0.0)) <= cos && cos < Math.cos(Math.toDegrees(15.0))){
                     //12시 방향
                     time = 12;
@@ -449,35 +449,63 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
                     time = 6;
                 }
             }
-            else{
-                if(Math.cos(Math.toDegrees(180.0)) <= cos && cos < Math.cos(Math.toDegrees(195.0))){
+            else{//cos1값이 올바른 길임
+                if(Math.cos(Math.toDegrees(0.0)) <= cos && cos < Math.cos(Math.toDegrees(15.0))){
+                    //12시 방향
+                    time = 7;
+                }
+                else if(Math.cos(Math.toDegrees(15.0)) <= cos && cos < Math.cos(Math.toDegrees(45.0))){
+                    //1시 방향
+                    time = 8;
+                }
+                else if(Math.cos(Math.toDegrees(45.0)) <= cos && cos < Math.cos(Math.toDegrees(75.0))){
+                    //2시 방향
+                    time = 9;
+                }
+                else if(Math.cos(Math.toDegrees(75.0)) <= cos && cos < Math.cos(Math.toDegrees(105.0))){
+                    //3시 방향
+                    time = 10;
+                }
+                else if(Math.cos(Math.toDegrees(105.0)) <= cos && cos < Math.cos(Math.toDegrees(135.0))){
+                    //4시 방향
+                    time = 11;
+                }
+                else if(Math.cos(Math.toDegrees(135.0)) <= cos && cos < Math.cos(Math.toDegrees(165.0))){
+                    //5시 방향
+                    time = 12;
+                }
+                else if(Math.cos(Math.toDegrees(165.0)) <= cos && cos < Math.cos(Math.toDegrees(180.0))){
                     //6시 방향
                     time = 6;
                 }
-                else if(Math.cos(Math.toDegrees(195.0)) <= cos && cos < Math.cos(Math.toDegrees(225.0))){
-                    //7시 방향
-                    time = 7;
-                }
-                else if(Math.cos(Math.toDegrees(225.0)) <= cos && cos < Math.cos(Math.toDegrees(255.0))){
-                    //8시 방향
-                    time = 8;
-                }
-                else if(Math.cos(Math.toDegrees(255.0)) <= cos && cos < Math.cos(Math.toDegrees(285.0))){
-                    //9시 방향
-                    time = 9;
-                }
-                else if(Math.cos(Math.toDegrees(285.0)) <= cos && cos < Math.cos(Math.toDegrees(315.0))){
-                    //10시 방향
-                    time = 10;
-                }
-                else if(Math.cos(Math.toDegrees(315.0)) <= cos && cos < Math.cos(Math.toDegrees(345.0))){
-                    //11시 방향
-                    time = 11;
-                }
-                else if(Math.cos(Math.toDegrees(345.0)) <= cos && cos < Math.cos(Math.toDegrees(360.0))) {
-                    //12 방향
-                    time = 12;
-                }
+//                if(Math.cos(Math.toDegrees(180.0)) <= cos && cos < Math.cos(Math.toDegrees(195.0))){
+//                    //6시 방향
+//                    time = 6;
+//                }
+//                else if(Math.cos(Math.toDegrees(195.0)) <= cos && cos < Math.cos(Math.toDegrees(225.0))){
+//                    //7시 방향
+//                    time = 7;
+//                }
+//                else if(Math.cos(Math.toDegrees(225.0)) <= cos && cos < Math.cos(Math.toDegrees(255.0))){
+//                    //8시 방향
+//                    time = 8;
+//                }
+//                else if(Math.cos(Math.toDegrees(255.0)) <= cos && cos < Math.cos(Math.toDegrees(285.0))){
+//                    //9시 방향
+//                    time = 9;
+//                }
+//                else if(Math.cos(Math.toDegrees(285.0)) <= cos && cos < Math.cos(Math.toDegrees(315.0))){
+//                    //10시 방향
+//                    time = 10;
+//                }
+//                else if(Math.cos(Math.toDegrees(315.0)) <= cos && cos < Math.cos(Math.toDegrees(345.0))){
+//                    //11시 방향
+//                    time = 11;
+//                }
+//                else if(Math.cos(Math.toDegrees(345.0)) <= cos && cos < Math.cos(Math.toDegrees(360.0))) {
+//                    //12 방향
+//                    time = 12;
+//                }
             }
 
             Toast.makeText(getApplicationContext(), time + "시 방향으로 이동", Toast.LENGTH_LONG).show();
