@@ -6,22 +6,51 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import net.daum.mf.map.api.MapLayout;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapPolyline;
 import net.daum.mf.map.api.MapView;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.w3c.dom.Comment;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Random;
 
 import java.util.ArrayList;
 
-public class MapViewActivity extends AppCompatActivity
-        implements MapView.OpenAPIKeyAuthenticationResultListener, MapView.MapViewEventListener {
+public class MapViewActivity extends AppCompatActivity implements MapView.OpenAPIKeyAuthenticationResultListener, MapView.MapViewEventListener {
 
     private static final int MENU_MAP_TYPE = Menu.FIRST + 1;
     private static final int MENU_MAP_MOVE = Menu.FIRST + 2;
@@ -32,10 +61,94 @@ public class MapViewActivity extends AppCompatActivity
     private ArrayList mMapPointList;
 
 
+    //추가 시작
+    ListView listView;
+    EditText editText;
+    Button sendButton;
+    String userName;
+    ArrayAdapter adapter;
+    String email;
+    List<EdataReadWrite> mComments;
+
+    //private RecyclerView mRecyclerView; 데이터 받을 때 필요
+   // private RecyclerView.Adapter mAdapter; 데이터 받을 때 필요
+   // private RecyclerView.LayoutManager mLayoutManager; 데이터 받을 때 필요
+
+    //String[] myDataset={"우리는","지금","전기프","열코딩중"};
+    FirebaseDatabase database;
+    //추가 끝
+    FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_view);
+
+        //추가 시작
+        database = FirebaseDatabase.getInstance();//instance를 받아야돼
+        //데이터 송수신
+
+        user = FirebaseAuth.getInstance().getCurrentUser();//현재 user정보를 가지고 옴
+        if (user != null) {
+            // Name, email address, and profile photo Url
+
+            email = user.getEmail();//사용자 이메일을 받아오는 함수
+
+        }
+
+       // mLayoutManager = new LinearLayoutManager(this);
+       // mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // specify an adapter (see also next example)
+        mComments=new ArrayList<>();
+       // mAdapter = new MyAdapter(mComments);
+     //   mRecyclerView.setAdapter(mAdapter);
+
+
+        //final String readMe=email;
+        DatabaseReference myRef = database.getReference(user.getUid());//읽어올 트리 헤드 이름(값이 미리 존재해야 읽을 수 있음)
+
+
+
+        myRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+
+                EdataReadWrite comment = dataSnapshot.getValue(EdataReadWrite.class);
+
+
+                // [START_EXCLUDE]
+                // Update RecyclerView
+                //mCommentIds.add(dataSnapshot.getKey());
+             //   mComments.add(comment);//list를 만들어줌
+              //  mAdapter.notifyItemInserted(mComments.size() - 1);//아이템이 들어가면 반영한다
+                // [END_EXCLUDE]
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //추가 끝
+
 
         MapLayout mapLayout = new MapLayout(this);
         mMapView = mapLayout.getMapView();
@@ -229,7 +342,7 @@ public class MapViewActivity extends AppCompatActivity
     }
 
     @Override
-    public void onMapViewLongPressed(MapView mapView, MapPoint mapPoint) {
+    public void onMapViewLongPressed(MapView mapView, final MapPoint mapPoint) {
 
         final MapPoint.GeoCoordinate mapPointGeo = mapPoint.getMapPointGeoCoord();
 
@@ -239,12 +352,51 @@ public class MapViewActivity extends AppCompatActivity
         alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                //등록 버튼을 누를 경우
+
                 MapPolyline existingPolyline = mMapView.findPolylineByTag(2000);
                 if (existingPolyline != null) {
                     mMapView.removePolyline(existingPolyline);
                 }
 
                 mMapPointList.add(MapPoint.mapPointWithGeoCoord(mapPointGeo.latitude, mapPointGeo.longitude));
+                String str= ""+mapPointGeo.latitude;
+                String str2= ""+mapPointGeo.longitude;
+
+                //추가 시작
+                //데이터가 입력되었을 때, 데이터베이스에 전송
+
+                // FirebaseDatabase database = FirebaseDatabase.getInstance();//instance를 받아야돼
+
+                // DatabaseReference myRef = database.getReference("dot array");//트리 헤드 이름
+
+                //헤드의 child를 데이터를 수신한 시간으로 설정함
+                //head dotarray에 날짜별로 데이터가 올라가짐
+                Calendar c =Calendar.getInstance();
+                SimpleDateFormat df=new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+                String formattedDate=df.format((c.getTime()));
+
+                DatabaseReference myRef = database.getReference(user.getUid()).child(formattedDate);//트리 헤드 이름
+
+
+                //해쉬테이블 이용합니당
+                Hashtable<String, String> dataDot
+                        = new Hashtable<String, String>();
+                dataDot.put("latitude", str);//key, value(내용)//key값이름 바꾸려면 저기도 반드시 같이 수정해줘야됨//경도 저장되는지 확인
+                dataDot.put("longitude", str2);//일단 위도값먼저 저장되는지 확인
+
+               // dataDot.put("구분", "보호자");//데이터베이스 저장소에는 보호자만 되어있음
+                //사용자는 저장된 데이터만 읽어서 가져옴
+
+
+                myRef.setValue(dataDot);
+                //Toast.makeText(EChatActivity.this,email+","+stText,Toast.LENGTH_SHORT).show();
+
+            //추가 끝
+
+
+                Toast.makeText(MapViewActivity.this,str+","+str2,Toast.LENGTH_SHORT).show();//확인용
+
                 MapPOIItem poiItemPick = new MapPOIItem();
                 poiItemPick.setItemName("Pick");
                 poiItemPick.setTag(10001);
@@ -264,6 +416,8 @@ public class MapViewActivity extends AppCompatActivity
                 mMapView.addPolyline(polyline);
             }
         });
+
+
         alertDialog.setNegativeButton("CANCLE", null);
         alertDialog.show();
     }

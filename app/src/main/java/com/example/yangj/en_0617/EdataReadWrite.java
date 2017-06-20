@@ -6,8 +6,8 @@ package com.example.yangj.en_0617;
 
 public class EdataReadWrite {
 
-    public String userID;//올라오는 데이터 "키"값이랑 똑같아야돼
-     public String sendedText;//올라오는 데이터 키값이랑 똑같아야돼
+    public String latitude;//올라오는 데이터 "키"값이랑 똑같아야돼
+     public String longitude;//올라오는 데이터 키값이랑 똑같아야돼
 
 
 
@@ -17,23 +17,23 @@ public class EdataReadWrite {
 
 
              public EdataReadWrite(String uid, String text) {
-                 this.userID = uid;
-                 this.sendedText = text;
+                 this.latitude = uid;
+                 this.longitude = text;
              }
 
     public String getEmail() {
-        return userID;
+        return latitude;
     }
 
     public void setEmail(String email) {
-        this.userID = email;
+        this.latitude = email;
     }
 
     public String getText() {
-        return sendedText;
+        return longitude;
     }
 
     public void setText(String text) {
-        this.sendedText = text;
+        this.longitude = text;
     }
 }
