@@ -42,6 +42,7 @@ public class FirstFragement extends Fragment{
             @Override
             public void onClick(View v) {
                 //버튼 클릭하는 것만 봅니당..호호..(수정ㅇㅅㅇ)
+                //ㅎㅎ
                 //여기서만 버튼 처리 해주세용.. Fragment는 매우예민행ㅠ
                 //회원가입창입니다.
                 Toast.makeText(getActivity(),"버튼 클릭",Toast.LENGTH_SHORT).show();
