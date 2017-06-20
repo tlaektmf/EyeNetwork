@@ -32,13 +32,14 @@
                 android:id="@+id/button9"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="64dp"
+                android:layout_marginEnd="65dp"
                 android:background="#00ff0000"
                 android:onClick="EUserDeleteCheck"
                 android:scaleType="centerInside"
-                android:src="@drawable/stop"/>
+                android:src="@drawable/stop"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="142dp" />
 
             <TextView
                 android:id="@+id/textView2"
