@@ -433,12 +433,8 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
 
             int time = 0;
 
-<<<<<<< HEAD
             if(cos1<cos2){//cos2값이 올바른 길임
-=======
 
-            if(cos1<cos2){
->>>>>>> e6963cf90c6095e2de8fb86ec7b5d356c6c47f36
                 if(Math.cos(Math.toDegrees(0.0)) <= cos && cos < Math.cos(Math.toDegrees(15.0))){
                     //12시 방향
                     text="12시 방향으로 이동하십시오.";
@@ -482,31 +478,8 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
                     time = 6;
                 }
             }
-<<<<<<< HEAD
-            else{//cos1값이 올바른 길임
-                if(Math.cos(Math.toDegrees(0.0)) <= cos && cos < Math.cos(Math.toDegrees(15.0))){
-                    //12시 방향
-                    time = 7;
-                }
-                else if(Math.cos(Math.toDegrees(15.0)) <= cos && cos < Math.cos(Math.toDegrees(45.0))){
-                    //1시 방향
-                    time = 8;
-                }
-                else if(Math.cos(Math.toDegrees(45.0)) <= cos && cos < Math.cos(Math.toDegrees(75.0))){
-                    //2시 방향
-                    time = 9;
-                }
-                else if(Math.cos(Math.toDegrees(75.0)) <= cos && cos < Math.cos(Math.toDegrees(105.0))){
-                    //3시 방향
-                    time = 10;
-                }
-                else if(Math.cos(Math.toDegrees(105.0)) <= cos && cos < Math.cos(Math.toDegrees(135.0))){
-                    //4시 방향
-                    time = 11;
-                }
-                else if(Math.cos(Math.toDegrees(135.0)) <= cos && cos < Math.cos(Math.toDegrees(165.0))){
-                    //5시 방향
-=======
+
+
             else{
                 if(Math.cos(Math.toDegrees(180.0)) <= cos && cos < Math.cos(Math.toDegrees(195.0))){
                     //6시 방향
@@ -548,7 +521,7 @@ public class LocationActivity extends AppCompatActivity implements MapView.Curre
                     //12 방향
                     text="12시 방향으로 이동하십시오.";
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH,null);
->>>>>>> e6963cf90c6095e2de8fb86ec7b5d356c6c47f36
+
                     time = 12;
                 }
                 else if(Math.cos(Math.toDegrees(165.0)) <= cos && cos < Math.cos(Math.toDegrees(180.0))){
