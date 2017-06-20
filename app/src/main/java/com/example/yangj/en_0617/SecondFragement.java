@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -50,7 +51,7 @@ public class SecondFragement extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         RelativeLayout layout=(RelativeLayout)inflater.inflate(R.layout.activity_login,container,false);
-        button=(Button)layout.findViewById(R.id.btnLogin);
+        ImageButton button=(ImageButton)layout.findViewById(R.id.btnLogin);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

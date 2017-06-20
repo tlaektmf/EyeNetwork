@@ -72,7 +72,8 @@ public class EStartActionActivity extends Activity{
         }
     };
 
-    public void ENProtectorCheck(View view) {
+
+    public void ENStartCheck(View view) {
         Intent intent=new Intent(getApplicationContext(),EProtectorStartActivity.class);
         startActivity(intent);
     }
