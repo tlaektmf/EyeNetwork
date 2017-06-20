@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import net.daum.android.map.MapView;
+
 import org.w3c.dom.Comment;
 
 import java.text.SimpleDateFormat;
@@ -150,7 +152,7 @@ public class EChatActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //자 이제 인텐트를 넘겨줘야됨
 
-                Intent in=new Intent(EChatActivity.this,LocationActivity.class);
+                Intent in=new Intent(EChatActivity.this, MapViewActivity.class);
 
                 startActivity(in);
             }
