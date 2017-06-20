@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -62,7 +61,6 @@ public class SecondFragement extends Fragment{
                 //로그인창입니다.
                 Toast.makeText(getActivity(),"버튼 클릭",Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(getActivity(), EChatActivity.class);
-
                 startActivity(intent);
             }
         });

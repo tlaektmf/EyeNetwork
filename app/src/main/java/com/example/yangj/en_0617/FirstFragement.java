@@ -36,7 +36,6 @@ public class FirstFragement extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         RelativeLayout layout=(RelativeLayout)inflater.inflate(R.layout.activity_ejoin,container,false);
-
         button=(ImageButton)layout.findViewById(R.id.btnRegister);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
